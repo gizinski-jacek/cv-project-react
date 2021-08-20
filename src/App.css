@@ -1,0 +1,176 @@
+:root {
+	font-size: 16px;
+}
+
+body {
+	height: 100vh;
+	margin: 0;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.5rem;
+	color: rgb(255, 255, 255);
+	background-color: rgb(50, 50, 50);
+}
+
+.main {
+	display: flex;
+	justify-content: center;
+	background-color: rgb(175, 175, 175);
+}
+
+.footer {
+	display: flex;
+	justify-content: center;
+	padding: 0.5rem;
+	color: rgb(255, 255, 255);
+	background-color: rgb(50, 50, 50);
+}
+
+.inputMode {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	left: 50%;
+	padding: 0.25rem;
+}
+
+.inputMode div {
+	position: relative;
+	left: -50%;
+}
+
+.inputMode button {
+	border: solid 1px rgb(255, 255, 255);
+	background-color: rgb(50, 125, 50);
+	width: 8rem;
+	padding: 0.25rem 0.5rem;
+}
+
+#direct {
+	border-radius: 0.5rem 0 0 0.5rem;
+}
+
+#formPreview {
+	border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.activeInputMode {
+	background-color: rgb(50, 200, 75) !important;
+}
+
+.CVcontrols {
+	display: flex;
+	justify-content: center;
+	padding: 0.25rem;
+}
+
+.CVcontrols button {
+	border: solid 1px rgb(255, 255, 255);
+	width: 4rem;
+	padding: 0 0.5rem;
+}
+
+#save {
+	background-color: rgb(0, 150, 255);
+	border-radius: 0.5rem 0 0 0.5rem;
+}
+
+#clear {
+	background-color: rgb(255, 75, 75);
+	border-radius: 0 0.5rem 0.5rem 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	margin: 0;
+}
+
+.directCV {
+	width: 100%;
+}
+
+.formPreviewCV {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.previewCV,
+.formCV {
+	margin: 1rem 5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	margin-top: 10px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+input,
+textarea {
+	width: 15rem !important;
+	padding: 0.1rem 0.25rem;
+	margin: 0.25rem 0;
+}
+
+textarea {
+	resize: none;
+}
+
+.previewCV {
+	width: 600px;
+	height: 800px;
+}
+
+.headerCV {
+	width: 100%;
+	background-color: rgba(0, 150, 255, 0.7);
+}
+
+.headerCV div {
+	margin-bottom: 0.5rem;
+}
+
+.headerCV div * {
+	padding: 0.5rem;
+}
+
+.mainBodyCV {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(255, 255, 255);
+}
+
+.leftPanelCV {
+	width: 40%;
+	background-color: rgb(225, 225, 225);
+}
+
+.leftPanelCV div {
+	padding: 0.5rem;
+}
+
+.rightPanelCV {
+	width: 60%;
+	background-color: rgb(255, 255, 255);
+}
+
+.rightPanelCV {
+	padding: 0.5rem;
+}
