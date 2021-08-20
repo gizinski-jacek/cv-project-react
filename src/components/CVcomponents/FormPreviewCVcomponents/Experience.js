@@ -1,0 +1,55 @@
+function Experience() {
+	return (
+		<section>
+			<h3>Experience</h3>
+			<form>
+				<label>
+					<input
+						type='text'
+						id='company'
+						name='company'
+						placeholder='Company'
+					/>
+				</label>
+				<label>
+					<input
+						type='text'
+						id='position'
+						name='position'
+						placeholder='Position'
+					/>
+				</label>
+				<label>
+					<input
+						type='text'
+						id='city'
+						name='city'
+						placeholder='City'
+					/>
+				</label>
+				<label>
+					<input
+						type='date'
+						id='workStarted'
+						name='workStarted'
+						placeholder='Started'
+						min='1950-01-01'
+						max='2020-01-01'
+					/>
+				</label>
+				<label>
+					<input
+						type='date'
+						id='workEnded'
+						name='WorkEnded'
+						placeholder='Ended'
+						min='1950-01-01'
+						max='2020-01-01'
+					/>
+				</label>
+			</form>
+		</section>
+	);
+}
+
+export default Experience;

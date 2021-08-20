@@ -1,0 +1,63 @@
+function Education() {
+	return (
+		<section>
+			<h3>Education</h3>
+			<form>
+				<label>
+					<input
+						type='text'
+						id='university'
+						name='university'
+						placeholder='University Name'
+					/>
+				</label>
+				<label>
+					<input
+						type='text'
+						id='universityCity'
+						name='universityCity'
+						placeholder='City'
+					/>
+				</label>
+				<label>
+					<input
+						type='text'
+						id='degree'
+						name='degree'
+						placeholder='Degree'
+					/>
+				</label>
+				<label>
+					<input
+						type='text'
+						id='subject'
+						name='subject'
+						placeholder='Subject'
+					/>
+				</label>
+				<label>
+					<input
+						type='date'
+						id='universityStarted'
+						name='universityStarted'
+						placeholder='Started'
+						min='1950-01-01'
+						max='2020-01-01'
+					/>
+				</label>
+				<label>
+					<input
+						type='date'
+						id='universityEnded'
+						name='universityEnded'
+						placeholder='Ended'
+						min='1950-01-01'
+						max='2020-01-01'
+					/>
+				</label>
+			</form>
+		</section>
+	);
+}
+
+export default Education;
