@@ -1,33 +1,35 @@
-function PreviewCV() {
+function PreviewCV(props) {
+	const { personal, experience, education } = props.data;
 	return (
 		<>
 			<div className='headerCV'>
 				<div className='personalInformationCV'>
-					<h1>Name</h1>
-					<h2>Title</h2>
+					<h1>
+						{personal.firstName} {personal.lastName}
+					</h1>
+					<h2>{personal.title}</h2>
 				</div>
 			</div>
 			<div className='mainBodyCV'>
 				<div className='leftPanelCV'>
 					<div>
-						<h3>Photo</h3>
-						<p>000</p>
+						<h3>{personal.photo}</h3>
 					</div>
 					<div>
 						<h3>Date of Birth</h3>
-						<p>111</p>
+						<p>{personal.birth}</p>
 					</div>
 					<div>
 						<h3>Address</h3>
-						<p>222</p>
+						<p>{personal.address}</p>
 					</div>
 					<div>
 						<h3>Phone Number</h3>
-						<p>333</p>
+						<p>{personal.phone}</p>
 					</div>
 					<div>
 						<h3>Email</h3>
-						<p>444</p>
+						<p>{personal.email}</p>
 					</div>
 				</div>
 				<div className='rightPanelCV'>
