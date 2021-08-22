@@ -1,4 +1,4 @@
-function Experience() {
+function Experience(props) {
 	return (
 		<section>
 			<h3>Experience</h3>
@@ -9,6 +9,8 @@ function Experience() {
 						id='company'
 						name='company'
 						placeholder='Company'
+						value={props.data.company}
+						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
@@ -17,6 +19,8 @@ function Experience() {
 						id='position'
 						name='position'
 						placeholder='Position'
+						value={props.data.position}
+						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
@@ -25,6 +29,8 @@ function Experience() {
 						id='city'
 						name='city'
 						placeholder='City'
+						value={props.data.city}
+						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
@@ -35,18 +41,23 @@ function Experience() {
 						placeholder='Started'
 						min='1950-01-01'
 						max='2020-01-01'
+						value={props.data.workStarted}
+						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
 					<input
 						type='date'
 						id='workEnded'
-						name='WorkEnded'
+						name='workEnded'
 						placeholder='Ended'
 						min='1950-01-01'
 						max='2020-01-01'
+						value={props.data.workEnded}
+						onChange={props.handleInput}
 					/>
 				</label>
+				<button type='submit'>Submit</button>
 			</form>
 		</section>
 	);

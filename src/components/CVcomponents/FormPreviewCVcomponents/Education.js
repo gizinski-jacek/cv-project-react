@@ -1,4 +1,4 @@
-function Education() {
+function Education(props) {
 	return (
 		<section>
 			<h3>Education</h3>
@@ -8,7 +8,9 @@ function Education() {
 						type='text'
 						id='university'
 						name='university'
-						placeholder='University Name'
+						placeholder='University'
+						value={props.data.university}
+						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
@@ -17,6 +19,8 @@ function Education() {
 						id='universityCity'
 						name='universityCity'
 						placeholder='City'
+						value={props.data.universityCity}
+						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
@@ -25,6 +29,8 @@ function Education() {
 						id='degree'
 						name='degree'
 						placeholder='Degree'
+						value={props.data.degree}
+						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
@@ -33,6 +39,8 @@ function Education() {
 						id='subject'
 						name='subject'
 						placeholder='Subject'
+						value={props.data.subject}
+						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
@@ -43,6 +51,8 @@ function Education() {
 						placeholder='Started'
 						min='1950-01-01'
 						max='2020-01-01'
+						value={props.data.universityStarted}
+						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
@@ -53,8 +63,11 @@ function Education() {
 						placeholder='Ended'
 						min='1950-01-01'
 						max='2020-01-01'
+						value={props.data.universityEnded}
+						onChange={props.handleInput}
 					/>
 				</label>
+				<button type='submit'>Submit</button>
 			</form>
 		</section>
 	);
