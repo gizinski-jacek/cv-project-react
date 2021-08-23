@@ -2,99 +2,90 @@ function PersonalInformation(props) {
 	return (
 		<section>
 			<h3>Personal Information</h3>
-			<form id='personal'>
+			<form>
 				<label>
 					<input
 						type='text'
-						id='firstName'
 						name='firstName'
 						placeholder='First Name'
 						value={props.data.firstName}
-						onChange={props.handleInput}
+						onChange={props.handleChange}
 					/>
 				</label>
 				<label>
 					<input
 						type='text'
-						id='lastName'
 						name='lastName'
 						placeholder='Last Name'
 						value={props.data.lastName}
-						onChange={props.handleInput}
+						onChange={props.handleChange}
 					/>
 				</label>
 				<label>
 					<input
 						type='text'
-						id='title'
 						name='title'
 						placeholder='Title'
 						value={props.data.title}
-						onChange={props.handleInput}
+						onChange={props.handleChange}
 					/>
 				</label>
 				<label>
-					<p>Photo...</p>
+					<span name='photo'>Photo...</span>
 					<input
 						type='file'
-						id='photo'
 						name='photo'
 						placeholder='Photo'
 						accept='.png,.jpeg,.jpg'
 						value={props.data.photo}
-						onChange={props.handleInput}
+						onChange={props.handleChange}
 					/>
 				</label>
 				<label>
 					<input
 						type='date'
-						id='birth'
 						name='birth'
 						min='1950-01-01'
 						max='2005-01-01'
 						value={props.data.birth}
-						onChange={props.handleInput}
+						onChange={props.handleChange}
 					/>
 				</label>
 				<label>
 					<input
 						type='text'
-						id='address'
 						name='address'
 						placeholder='Address'
 						value={props.data.address}
-						onChange={props.handleInput}
+						onChange={props.handleChange}
 					/>
 				</label>
 				<label>
 					<input
 						type='tel'
-						id='phone'
 						name='phone'
 						placeholder='Phone'
 						value={props.data.phone}
-						onChange={props.handleInput}
+						onChange={props.handleChange}
 					/>
 				</label>
 				<label>
 					<input
 						type='email'
-						id='email'
 						name='email'
 						placeholder='Email'
 						value={props.data.email}
-						onChange={props.handleInput}
+						onChange={props.handleChange}
 					/>
 				</label>
 				<label>
 					<textarea
 						type='text'
-						id='description'
 						name='description'
 						rows='3'
 						placeholder='Description'
 						value={props.data.description}
-						onChange={props.handleInput}
+						onChange={props.handleChange}
 					/>
 				</label>
 			</form>
