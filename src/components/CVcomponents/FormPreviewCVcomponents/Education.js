@@ -16,10 +16,10 @@ function Education(props) {
 				<label>
 					<input
 						type='text'
-						id='universityCity'
-						name='universityCity'
+						id='uniCity'
+						name='uniCity'
 						placeholder='City'
-						value={props.data.universityCity}
+						value={props.data.uniCity}
 						onChange={props.handleInput}
 					/>
 				</label>
@@ -46,28 +46,31 @@ function Education(props) {
 				<label>
 					<input
 						type='date'
-						id='universityStarted'
-						name='universityStarted'
+						id='uniStart'
+						name='uniStart'
 						placeholder='Started'
 						min='1950-01-01'
 						max='2020-01-01'
-						value={props.data.universityStarted}
+						value={props.data.uniStart}
 						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
 					<input
 						type='date'
-						id='universityEnded'
-						name='universityEnded'
+						id='uniEnd'
+						name='uniEnd'
 						placeholder='Ended'
 						min='1950-01-01'
 						max='2020-01-01'
-						value={props.data.universityEnded}
+						value={props.data.uniEnd}
 						onChange={props.handleInput}
 					/>
 				</label>
-				<button type='submit'>Submit</button>
+				<div>
+					<button type='submit'>Add</button>
+					<button type='submit'>Remove</button>
+				</div>
 			</form>
 		</section>
 	);
