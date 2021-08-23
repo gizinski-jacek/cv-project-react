@@ -84,12 +84,12 @@ function FormPreviewCV() {
 		}));
 	}
 
-	// ^^^^^^^^^^^^^^^^^^
-	// Rework new sections ID's, will create bugs right now when deleting.
-	//
-
 	function handleRemoveExperience(e, id) {
 		e.preventDefault();
+		setAllCVData((prevState) => ({
+			...prevState,
+			experience: prevState.experience.filter((item) => item.id !== id),
+		}));
 	}
 
 	function handleEducationChange(e, id) {
@@ -126,6 +126,10 @@ function FormPreviewCV() {
 
 	function handleRemoveEducation(e, id) {
 		e.preventDefault();
+		setAllCVData((prevState) => ({
+			...prevState,
+			education: prevState.education.filter((item) => item.id !== id),
+		}));
 	}
 
 	return (
