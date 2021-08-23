@@ -17,24 +17,30 @@ function FormPreviewCV() {
 			email: '',
 			description: '',
 		},
-		experience: {
-			company: '',
-			position: '',
-			city: '',
-			workStarted: '2000-01-01',
-			workEnded: '2020-01-01',
-		},
-		education: {
-			university: '',
-			universityCity: '',
-			degree: '',
-			subject: '',
-			universityStarted: '2000-01-01',
-			universityEnded: '2020-01-01',
-		},
+		experience: [
+			{
+				id: 'exp0',
+				company: '',
+				position: '',
+				city: '',
+				workStart: '2000-01-01',
+				workEnd: '2020-01-01',
+			},
+		],
+		education: [
+			{
+				id: 'edu0',
+				university: '',
+				uniCity: '',
+				degree: '',
+				subject: '',
+				uniStart: '2000-01-01',
+				uniEnd: '2020-01-01',
+			},
+		],
 	});
 
-	function handlePersonal(e) {
+	function handlePersonalChange(e) {
 		const { name, value } = e.target;
 		setAllCVData((prevState) => ({
 			...prevState,
@@ -45,26 +51,30 @@ function FormPreviewCV() {
 		}));
 	}
 
-	function handleExperience(e) {
-		const { name, value } = e.target;
-		setAllCVData((prevState) => ({
-			...prevState,
-			experience: {
-				...prevState.experience,
-				[name]: value,
-			},
-		}));
+	function handleExperienceChange(e) {
+		const { name, value, id } = e.target;
+		setAllCVData((prevState) => {
+			const newState = prevState.experience.map((item) => {
+				if (item.id === 'exp' + (prevState.experience.length - 1)) {
+					return { ...item, [name]: value };
+				}
+				return item;
+			});
+			return { ...prevState, experience: [...newState] };
+		});
 	}
 
-	function handleEducation(e) {
-		const { name, value } = e.target;
-		setAllCVData((prevState) => ({
-			...prevState,
-			education: {
-				...prevState.education,
-				[name]: value,
-			},
-		}));
+	function handleEducationChange(e) {
+		const { name, value, id } = e.target;
+		setAllCVData((prevState) => {
+			const newState = prevState.education.map((item) => {
+				if (item.id === 'edu' + (prevState.education.length - 1)) {
+					return { ...item, [name]: value };
+				}
+				return item;
+			});
+			return { ...prevState, education: [...newState] };
+		});
 	}
 
 	// function handleNewSection(e) {
@@ -81,15 +91,15 @@ function FormPreviewCV() {
 			<div className='formCV'>
 				<PersonalInformation
 					data={allCVData.personal}
-					handleInput={handlePersonal}
+					handleInput={handlePersonalChange}
 				/>
 				<Experience
-					data={allCVData.experience}
-					handleInput={handleExperience}
+					data={allCVData.experience[allCVData.experience.length - 1]}
+					handleInput={handleExperienceChange}
 				/>
 				<Education
-					data={allCVData.education}
-					handleInput={handleEducation}
+					data={allCVData.education[allCVData.education.length - 1]}
+					handleInput={handleEducationChange}
 				/>
 			</div>
 		</div>
