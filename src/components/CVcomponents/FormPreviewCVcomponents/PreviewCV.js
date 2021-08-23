@@ -10,6 +10,7 @@ function PreviewCV(props) {
 				<p>{item.company}</p>
 				<p>{item.city}</p>
 				<p>{item.position}</p>
+				<hr className='grayHR' />
 			</div>
 		);
 	});
@@ -24,6 +25,7 @@ function PreviewCV(props) {
 				<p>{item.uniCity}</p>
 				<p>Degree: {item.degree}</p>
 				<p>Subject: {item.subject}</p>
+				<hr className='grayHR' />
 			</div>
 		);
 	});
@@ -45,32 +47,39 @@ function PreviewCV(props) {
 					</div>
 					<div>
 						<h3>Date of Birth</h3>
+						<hr className='blackHR' />
 						<p>{personal.birth}</p>
 					</div>
 					<div>
 						<h3>Address</h3>
+						<hr className='blackHR' />
 						<p>{personal.address}</p>
 					</div>
 					<div>
 						<h3>Phone Number</h3>
+						<hr className='blackHR' />
 						<p>{personal.phone}</p>
 					</div>
 					<div>
 						<h3>Email</h3>
+						<hr className='blackHR' />
 						<p>{personal.email}</p>
 					</div>
 				</div>
 				<div className='rightPanelCV'>
 					<div className='descriptionCV'>
 						<h3>Description</h3>
+						<hr className='blackHR' />
 						<p>{personal.description}</p>
 					</div>
 					<div className='experienceCV'>
 						<h3>Experience</h3>
+						<hr className='blackHR' />
 						{experienceView}
 					</div>
 					<div className='educationCV'>
 						<h3>Education</h3>
+						<hr className='blackHR' />
 						{educationView}
 					</div>
 				</div>
