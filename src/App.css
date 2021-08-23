@@ -142,6 +142,10 @@ textarea {
 	height: 1000px;
 }
 
+h1 {
+	min-height: 2.5rem;
+}
+
 p {
 	min-height: 1.5rem;
 	margin: 0.25rem 0;
