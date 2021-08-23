@@ -1,5 +1,33 @@
 function PreviewCV(props) {
 	const { personal, experience, education } = props.data;
+
+	const experienceView = experience.map((item) => {
+		return (
+			<div key={item.id} className='item'>
+				<span className='date'>
+					{item.workStart} - {item.workEnd}
+				</span>
+				<p>{item.company}</p>
+				<p>{item.city}</p>
+				<p>{item.position}</p>
+			</div>
+		);
+	});
+
+	const educationView = education.map((item) => {
+		return (
+			<div key={item.id} className='item'>
+				<span className='date'>
+					{item.uniStart} - {item.uniEnd}
+				</span>
+				<p>{item.university}</p>
+				<p>{item.uniCity}</p>
+				<p>Degree: {item.degree}</p>
+				<p>Subject: {item.subject}</p>
+			</div>
+		);
+	});
+
 	return (
 		<>
 			<div className='headerCV'>
@@ -13,7 +41,7 @@ function PreviewCV(props) {
 			<div className='mainBodyCV'>
 				<div className='leftPanelCV'>
 					<div>
-						<h3>{personal.photo}</h3>
+						<h3>Photo 130x170</h3>
 					</div>
 					<div>
 						<h3>Date of Birth</h3>
@@ -35,19 +63,15 @@ function PreviewCV(props) {
 				<div className='rightPanelCV'>
 					<div className='descriptionCV'>
 						<h3>Description</h3>
-						<p>Description</p>
+						<p>{personal.description}</p>
 					</div>
 					<div className='experienceCV'>
 						<h3>Experience</h3>
-						<p>Experience</p>
-						<p>Experience</p>
-						<p>Experience</p>
+						{experienceView}
 					</div>
 					<div className='educationCV'>
 						<h3>Education</h3>
-						<p>Education</p>
-						<p>Education</p>
-						<p>Education</p>
+						{educationView}
 					</div>
 				</div>
 			</div>
