@@ -34,11 +34,13 @@ function PersonalInformation(props) {
 					/>
 				</label>
 				<label>
+					<p>Photo...</p>
 					<input
-						type='text'
+						type='file'
 						id='photo'
 						name='photo'
 						placeholder='Photo'
+						accept='.png,.jpeg,.jpg'
 						value={props.data.photo}
 						onChange={props.handleInput}
 					/>
