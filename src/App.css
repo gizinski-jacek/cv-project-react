@@ -88,7 +88,7 @@ h2,
 h3,
 h4,
 h5 {
-	margin: 0;
+	margin: 0.25rem 0;
 }
 
 .directCV {
@@ -109,10 +109,15 @@ h5 {
 	align-items: center;
 }
 
+.formCV {
+	width: 30%;
+}
+
 section {
 	display: flex;
 	flex-direction: column;
-	margin-top: 10px;
+	margin-top: 0.5rem;
+	width: 100%;
 }
 
 form {
@@ -122,8 +127,9 @@ form {
 
 input,
 textarea {
-	width: 15rem !important;
-	padding: 0.1rem 0.25rem;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.25rem;
 	margin: 0.25rem 0;
 }
 
@@ -132,13 +138,29 @@ textarea {
 }
 
 .previewCV {
-	width: 600px;
-	height: 800px;
+	width: 800px;
+	height: 1000px;
+}
+
+p {
+	min-height: 1.5rem;
+	margin: 0.25rem 0;
+}
+
+.experienceCV p,
+.educationCV p {
+	width: 50%;
+}
+
+.experienceCV,
+.educationCV {
+	margin: 2rem 0;
 }
 
 .headerCV {
 	width: 100%;
-	background-color: rgba(0, 150, 255, 0.7);
+	min-height: 7rem;
+	background-color: rgba(0, 150, 255, 0.75);
 }
 
 .headerCV div {
@@ -158,7 +180,7 @@ textarea {
 }
 
 .leftPanelCV {
-	width: 40%;
+	width: 30%;
 	background-color: rgb(225, 225, 225);
 }
 
@@ -167,10 +189,54 @@ textarea {
 }
 
 .rightPanelCV {
-	width: 60%;
+	width: 70%;
 	background-color: rgb(255, 255, 255);
 }
 
 .rightPanelCV {
 	padding: 0.5rem;
+}
+
+form div {
+	display: flex;
+	justify-content: space-between;
+}
+
+form div button {
+	margin: 0.5rem;
+	width: 45%;
+}
+
+.item {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	position: relative;
+}
+
+label {
+	display: flex;
+	align-items: center;
+}
+
+input,
+textarea,
+label p,
+span[name='photo'] {
+	font-size: 1rem;
+	margin: 0.25rem 0;
+	padding: 0.25rem;
+	border: solid 1px rgb(125, 125, 125);
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+}
+
+#photo {
+	display: none;
+}
+
+span.date {
+	margin: 0.25rem 0;
+	position: absolute;
+	right: 0;
 }
