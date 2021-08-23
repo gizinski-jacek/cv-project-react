@@ -1,77 +1,21 @@
+import EduSection from './EduSection';
+
 function Education(props) {
+	const eduItems = props.data.map((item) => (
+		<EduSection
+			key={item.id}
+			data={item}
+			handleChange={props.handleChange}
+			handleRemove={props.handleRemove}
+		/>
+	));
 	return (
 		<section>
 			<h3>Education</h3>
-			<form>
-				<label>
-					<input
-						type='text'
-						id='university'
-						name='university'
-						placeholder='University'
-						value={props.data.university}
-						onChange={props.handleInput}
-					/>
-				</label>
-				<label>
-					<input
-						type='text'
-						id='uniCity'
-						name='uniCity'
-						placeholder='City'
-						value={props.data.uniCity}
-						onChange={props.handleInput}
-					/>
-				</label>
-				<label>
-					<input
-						type='text'
-						id='degree'
-						name='degree'
-						placeholder='Degree'
-						value={props.data.degree}
-						onChange={props.handleInput}
-					/>
-				</label>
-				<label>
-					<input
-						type='text'
-						id='subject'
-						name='subject'
-						placeholder='Subject'
-						value={props.data.subject}
-						onChange={props.handleInput}
-					/>
-				</label>
-				<label>
-					<input
-						type='date'
-						id='uniStart'
-						name='uniStart'
-						placeholder='Started'
-						min='1950-01-01'
-						max='2020-01-01'
-						value={props.data.uniStart}
-						onChange={props.handleInput}
-					/>
-				</label>
-				<label>
-					<input
-						type='date'
-						id='uniEnd'
-						name='uniEnd'
-						placeholder='Ended'
-						min='1950-01-01'
-						max='2020-01-01'
-						value={props.data.uniEnd}
-						onChange={props.handleInput}
-					/>
-				</label>
-				<div>
-					<button type='submit'>Add</button>
-					<button type='submit'>Remove</button>
-				</div>
-			</form>
+			{eduItems}
+			<button type='submit' onClick={props.handleAdd}>
+				Add above section
+			</button>
 		</section>
 	);
 }
