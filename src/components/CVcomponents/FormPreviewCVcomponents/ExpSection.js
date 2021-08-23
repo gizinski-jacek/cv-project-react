@@ -1,9 +1,6 @@
 function ExpSection(props) {
 	return (
 		<form>
-			<button onClick={(e) => props.handleRemove(e, props.data.id)}>
-				Delete below section
-			</button>
 			<label>
 				<input
 					type='text'
@@ -53,6 +50,9 @@ function ExpSection(props) {
 					onChange={(e) => props.handleChange(e, props.data.id)}
 				/>
 			</label>
+			<button onClick={(e) => props.handleRemove(e, props.data.id)}>
+				Delete above section
+			</button>
 		</form>
 	);
 }
