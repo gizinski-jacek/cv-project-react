@@ -36,28 +36,31 @@ function Experience(props) {
 				<label>
 					<input
 						type='date'
-						id='workStarted'
-						name='workStarted'
+						id='workStart'
+						name='workStart'
 						placeholder='Started'
 						min='1950-01-01'
 						max='2020-01-01'
-						value={props.data.workStarted}
+						value={props.data.workStart}
 						onChange={props.handleInput}
 					/>
 				</label>
 				<label>
 					<input
 						type='date'
-						id='workEnded'
-						name='workEnded'
+						id='workEnd'
+						name='workEnd'
 						placeholder='Ended'
 						min='1950-01-01'
 						max='2020-01-01'
-						value={props.data.workEnded}
+						value={props.data.workEnd}
 						onChange={props.handleInput}
 					/>
 				</label>
-				<button type='submit'>Submit</button>
+				<div>
+					<button type='submit'>Add</button>
+					<button type='submit'>Remove</button>
+				</div>
 			</form>
 		</section>
 	);
