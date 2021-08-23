@@ -33,12 +33,11 @@ function PreviewCV(props) {
 	return (
 		<>
 			<div className='headerCV'>
-				<div className='personalInformationCV'>
-					<h1>
-						{personal.firstName} {personal.lastName}
-					</h1>
-					<h2>{personal.title}</h2>
-				</div>
+				<h1>
+					{personal.firstName} {personal.lastName}
+				</h1>
+				<hr className='blackHR' />
+				<h2>{personal.title}</h2>
 			</div>
 			<div className='mainBodyCV'>
 				<div className='leftPanelCV'>
