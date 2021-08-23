@@ -3,6 +3,7 @@ import PreviewCV from './FormPreviewCVcomponents/PreviewCV';
 import PersonalInformation from './FormPreviewCVcomponents/PersonalInformation';
 import Experience from './FormPreviewCVcomponents/Experience';
 import Education from './FormPreviewCVcomponents/Education';
+import { nanoid } from 'nanoid';
 import placeholderPhoto from '../Assets/placeholder-photo.jpeg';
 
 function FormPreviewCV() {
@@ -20,7 +21,7 @@ function FormPreviewCV() {
 		},
 		experience: [
 			{
-				id: 'exp0',
+				id: nanoid(),
 				company: '',
 				position: '',
 				city: '',
@@ -30,7 +31,7 @@ function FormPreviewCV() {
 		],
 		education: [
 			{
-				id: 'edu0',
+				id: nanoid(),
 				university: '',
 				uniCity: '',
 				degree: '',
@@ -63,7 +64,6 @@ function FormPreviewCV() {
 			});
 			return { ...prevState, experience: [...newState] };
 		});
-		console.log(allCVData);
 	}
 
 	function handleAddExperience(e) {
@@ -73,7 +73,7 @@ function FormPreviewCV() {
 			experience: [
 				...prevState.experience,
 				{
-					id: 'exp' + prevState.experience.length,
+					id: nanoid(),
 					company: '',
 					position: '',
 					city: '',
@@ -112,7 +112,7 @@ function FormPreviewCV() {
 			education: [
 				...prevState.education,
 				{
-					id: 'edu0' + prevState.education.length,
+					id: nanoid(),
 					university: '',
 					uniCity: '',
 					degree: '',
