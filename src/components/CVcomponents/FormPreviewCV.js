@@ -4,43 +4,9 @@ import PersonalInformation from './FormPreviewCVcomponents/PersonalInformation';
 import Experience from './FormPreviewCVcomponents/Experience';
 import Education from './FormPreviewCVcomponents/Education';
 import { nanoid } from 'nanoid';
-import placeholderPhoto from '../Assets/placeholder-photo.jpeg';
 
-function FormPreviewCV() {
-	const [allCVData, setAllCVData] = useState({
-		personal: {
-			firstName: '',
-			lastName: '',
-			title: '',
-			photo: placeholderPhoto,
-			birth: '2020-01-01',
-			address: '',
-			phone: '',
-			email: '',
-			description: '',
-		},
-		experience: [
-			{
-				id: nanoid(),
-				company: '',
-				position: '',
-				city: '',
-				workStart: '2000-01-01',
-				workEnd: '2020-01-01',
-			},
-		],
-		education: [
-			{
-				id: nanoid(),
-				university: '',
-				uniCity: '',
-				degree: '',
-				subject: '',
-				uniStart: '2000-01-01',
-				uniEnd: '2020-01-01',
-			},
-		],
-	});
+function FormPreviewCV(props) {
+	const [allCVData, setAllCVData] = useState(props.savedData);
 
 	function handlePersonalChange(e) {
 		const { name, value } = e.target;
