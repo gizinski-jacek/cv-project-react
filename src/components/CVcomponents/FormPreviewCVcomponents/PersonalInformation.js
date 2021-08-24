@@ -37,8 +37,7 @@ function PersonalInformation(props) {
 						name='photo'
 						placeholder='Photo'
 						accept='.png,.jpeg,.jpg'
-						value={props.data.photo}
-						onChange={props.handleChange}
+						onChange={props.handleFile}
 					/>
 				</label>
 				<label>
