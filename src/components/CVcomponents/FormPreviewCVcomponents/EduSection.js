@@ -59,7 +59,10 @@ function EduSection(props) {
 					onChange={(e) => props.handleChange(e, props.data.id)}
 				/>
 			</label>
-			<button onClick={(e) => props.handleRemove(e, props.data.id)}>
+			<button
+				className='deleteBtn'
+				onClick={(e) => props.handleRemove(e, props.data.id)}
+			>
 				Delete above section
 			</button>
 		</form>

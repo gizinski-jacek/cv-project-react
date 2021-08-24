@@ -13,7 +13,7 @@ function Education(props) {
 		<section>
 			<h3>Education</h3>
 			{eduItems}
-			<button type='submit' onClick={props.handleAdd}>
+			<button className='addBtn' type='submit' onClick={props.handleAdd}>
 				Add section
 			</button>
 		</section>

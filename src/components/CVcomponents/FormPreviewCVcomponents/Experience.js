@@ -13,7 +13,7 @@ function Experience(props) {
 		<section>
 			<h3>Experience</h3>
 			{expItems}
-			<button type='submit' onClick={props.handleAdd}>
+			<button className='addBtn' type='submit' onClick={props.handleAdd}>
 				Add above section
 			</button>
 		</section>
