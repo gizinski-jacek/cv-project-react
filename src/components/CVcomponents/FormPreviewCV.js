@@ -12,7 +12,7 @@ function FormPreviewCV() {
 			firstName: '',
 			lastName: '',
 			title: '',
-			photo: '',
+			photo: placeholderPhoto,
 			birth: '2020-01-01',
 			address: '',
 			phone: '',
@@ -51,6 +51,25 @@ function FormPreviewCV() {
 				[name]: value,
 			},
 		}));
+	}
+
+	function handleFileChange(e) {
+		const { name } = e.target;
+		const file = e.target.files[0];
+		if (!file) {
+			return;
+		}
+		const reader = new FileReader();
+		reader.onload = () => {
+			setAllCVData((prevState) => ({
+				...prevState,
+				personal: {
+					...prevState.personal,
+					[name]: reader.result,
+				},
+			}));
+		};
+		reader.readAsDataURL(file);
 	}
 
 	function handleExperienceChange(e, id) {
@@ -141,6 +160,7 @@ function FormPreviewCV() {
 				<PersonalInformation
 					data={allCVData.personal}
 					handleChange={handlePersonalChange}
+					handleFile={handleFileChange}
 				/>
 				<Experience
 					data={allCVData.experience}
