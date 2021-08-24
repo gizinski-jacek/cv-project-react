@@ -42,7 +42,7 @@ function PreviewCV(props) {
 			<div className='mainBodyCV'>
 				<div className='leftPanelCV'>
 					<div>
-						<h3>Photo 130x170</h3>
+						<img src={personal.photo} alt='' />
 					</div>
 					<div>
 						<h3>Date of Birth</h3>
