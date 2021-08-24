@@ -4,7 +4,7 @@ function Header(props) {
 			<h1>CV Creator</h1>
 			<div className='inputMode'>
 				{props.inputMode === 'direct' ? (
-					<div>
+					<>
 						<button
 							id='direct'
 							className='activeInputMode'
@@ -18,9 +18,9 @@ function Header(props) {
 						>
 							{'Form & Preview'}
 						</button>
-					</div>
+					</>
 				) : (
-					<div>
+					<>
 						<button id='direct' onClick={props.changeInputMode}>
 							Direct Edit
 						</button>
@@ -31,7 +31,7 @@ function Header(props) {
 						>
 							{'Form & Preview'}
 						</button>
-					</div>
+					</>
 				)}
 			</div>
 			<div className='CVcontrols'>
