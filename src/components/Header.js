@@ -35,8 +35,12 @@ function Header(props) {
 				)}
 			</div>
 			<div className='CVcontrols'>
-				<button id='save'>Save</button>
-				<button id='clear'>Clear</button>
+				<button id='save' onClick={props.saveData}>
+					Save
+				</button>
+				<button id='clear' onClick={props.clearData}>
+					Clear
+				</button>
 			</div>
 		</div>
 	);
