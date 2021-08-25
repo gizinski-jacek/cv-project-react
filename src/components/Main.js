@@ -7,7 +7,11 @@ function Main(props) {
 			{props.inputMode === 'direct' ? (
 				<DirectCV data={props.data} />
 			) : (
-				<FormPreviewCV savedData={props.savedData} />
+				<FormPreviewCV
+					savedData={props.savedData}
+					requestSave={props.requestSave}
+					saveDataToLS={props.saveDataToLS}
+				/>
 			)}
 		</div>
 	);
