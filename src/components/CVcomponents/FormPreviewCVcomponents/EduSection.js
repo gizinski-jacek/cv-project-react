@@ -43,7 +43,7 @@ function EduSection(props) {
 					name='uniStart'
 					placeholder='Started'
 					min='1950-01-01'
-					max='2020-01-01'
+					max='2050-12-31'
 					value={props.data.uniStart}
 					onChange={(e) => props.handleChange(e, props.data.id)}
 				/>
@@ -54,7 +54,7 @@ function EduSection(props) {
 					name='uniEnd'
 					placeholder='Ended'
 					min='1950-01-01'
-					max='2020-01-01'
+					max='2050-12-31'
 					value={props.data.uniEnd}
 					onChange={(e) => props.handleChange(e, props.data.id)}
 				/>

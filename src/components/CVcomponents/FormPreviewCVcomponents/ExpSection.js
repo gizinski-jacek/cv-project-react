@@ -34,7 +34,7 @@ function ExpSection(props) {
 					name='workStart'
 					placeholder='Started'
 					min='1950-01-01'
-					max='2020-01-01'
+					max='2050-12-31'
 					value={props.data.workStart}
 					onChange={(e) => props.handleChange(e, props.data.id)}
 				/>
@@ -45,7 +45,7 @@ function ExpSection(props) {
 					name='workEnd'
 					placeholder='Ended'
 					min='1950-01-01'
-					max='2020-01-01'
+					max='2050-12-31'
 					value={props.data.workEnd}
 					onChange={(e) => props.handleChange(e, props.data.id)}
 				/>
