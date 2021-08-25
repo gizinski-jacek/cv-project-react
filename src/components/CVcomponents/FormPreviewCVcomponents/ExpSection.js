@@ -13,18 +13,18 @@ function ExpSection(props) {
 			<label>
 				<input
 					type='text'
-					name='position'
-					placeholder='Position'
-					value={props.data.position}
+					name='city'
+					placeholder='City'
+					value={props.data.city}
 					onChange={(e) => props.handleChange(e, props.data.id)}
 				/>
 			</label>
 			<label>
 				<input
 					type='text'
-					name='city'
-					placeholder='City'
-					value={props.data.city}
+					name='position'
+					placeholder='Position'
+					value={props.data.position}
 					onChange={(e) => props.handleChange(e, props.data.id)}
 				/>
 			</label>
