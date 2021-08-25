@@ -35,7 +35,7 @@ function Header(props) {
 				)}
 			</div>
 			<div className='CVcontrols'>
-				<button id='save' onClick={props.saveData}>
+				<button id='save' onClick={props.requestSave}>
 					Save
 				</button>
 				<button id='clear' onClick={props.clearData}>
