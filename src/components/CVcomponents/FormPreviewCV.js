@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PreviewCV from './FormPreviewCVcomponents/PreviewCV';
 import PersonalInformation from './FormPreviewCVcomponents/PersonalInformation';
 import Experience from './FormPreviewCVcomponents/Experience';
@@ -6,7 +6,11 @@ import Education from './FormPreviewCVcomponents/Education';
 import { nanoid } from 'nanoid';
 
 function FormPreviewCV(props) {
-	const [allCVData, setAllCVData] = useState(props.savedData);
+	const { savedData, requestSave, saveDataToLS } = props;
+
+	useEffect(() => saveDataToLS(allCVData), [requestSave]);
+
+	const [allCVData, setAllCVData] = useState(savedData);
 
 	function handlePersonalChange(e) {
 		const { name, value } = e.target;
@@ -62,8 +66,8 @@ function FormPreviewCV(props) {
 					company: '',
 					position: '',
 					city: '',
-					workStart: '2000-01-01',
-					workEnd: '2020-01-01',
+					workStart: '',
+					workEnd: '',
 				},
 			],
 		}));
@@ -102,8 +106,8 @@ function FormPreviewCV(props) {
 					uniCity: '',
 					degree: '',
 					subject: '',
-					uniStart: '2000-01-01',
-					uniEnd: '2020-01-01',
+					uniStart: '',
+					uniEnd: '',
 				},
 			],
 		}));
