@@ -7,36 +7,48 @@ import emptyCV from './components/CVcomponents/emptyCV';
 
 function App() {
 	const [inputMode, setInputMode] = useState('direct');
-	const [savedData, setSavedData] = useState(emptyCV);
+	const [savedCVData, setSavedCVData] = useState(emptyCV);
+	const [requestSave, setRequestSave] = useState(false);
+
+	useEffect(() => {
+		const localCVData = JSON.parse(localStorage.getItem('savedCVData'));
+
+		if (localCVData) {
+			setSavedCVData((prevState) => localCVData);
+		}
+	}, []);
 
 	function changeInputMode(e) {
 		setInputMode((prevState) => e.target.id);
 	}
 
-	function saveDataToLS() {
-		console.log(1);
+	function requestSaveToLS() {
+		setRequestSave((prevState) => true);
+	}
+
+	function saveDataToLS(data) {
+		setRequestSave((prevState) => false);
+		localStorage.setItem('savedCVData', JSON.stringify(data));
 	}
 
 	function clearAllData() {
 		localStorage.clear();
 	}
 
-	useEffect(() => {
-		let localCVData = localStorage.getItem('savedData');
-		if (localCVData) {
-			setSavedData((prevState) => localCVData);
-		}
-	}, []);
-
 	return (
 		<>
 			<Header
 				inputMode={inputMode}
 				changeInputMode={changeInputMode}
-				saveData={saveDataToLS}
+				requestSave={requestSaveToLS}
 				clearData={clearAllData}
 			/>
-			<Main inputMode={inputMode} savedData={savedData} />
+			<Main
+				inputMode={inputMode}
+				savedData={savedCVData}
+				requestSave={requestSave}
+				saveDataToLS={saveDataToLS}
+			/>
 			<Footer />
 		</>
 	);
