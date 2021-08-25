@@ -10,6 +10,7 @@ body {
 .header {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	padding: 0.5rem;
 	color: rgb(255, 255, 255);
 	background-color: rgb(50, 50, 50);
@@ -45,12 +46,8 @@ body {
 }
 
 .inputMode button:hover {
-	border: 1px solid rgb(255, 255, 255);
 	background-color: rgb(50, 150, 50);
 	width: 10rem;
-	padding: 0.25rem 0.5rem;
-	font-size: 1rem;
-	font-weight: 600;
 }
 
 #direct {
@@ -68,13 +65,13 @@ body {
 .CVcontrols {
 	display: flex;
 	justify-content: center;
-	padding: 0.25rem;
+	padding: 0.5rem;
 }
 
 .CVcontrols button {
 	border: 1px solid rgb(255, 255, 255);
 	width: 5rem;
-	padding: 0 0.5rem;
+	padding: 0.25rem 0.5rem;
 	font-size: 1rem;
 	font-weight: 600;
 }
@@ -97,16 +94,42 @@ body {
 	background-color: rgb(255, 100, 100);
 }
 
-h1 {
+title {
 	margin: 0 1rem;
 	padding: 0.25rem;
 }
 
+.header h1 {
+	font-size: 2.5rem;
+	display: flex;
+	align-items: center;
+}
+
+h1 {
+	min-height: 2rem;
+	padding: 0.25rem 0;
+}
+
+h2 {
+	min-height: 1.5rem;
+	padding: 0.25rem 0;
+}
+
+h3,
+p {
+	min-height: 1.5rem;
+}
+
+h1,
 h2,
 h3,
-h4,
+p {
+	margin: 0.25rem;
+	line-height: 1.5rem;
+}
+
 h5 {
-	margin: 0.25rem 0;
+	margin: 0.25rem;
 }
 
 .directCV {
@@ -129,10 +152,17 @@ h5 {
 	box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.75);
 }
 
+.previewCV {
+	position: sticky;
+	top: 1rem;
+	width: 800px;
+	height: 900px;
+}
+
 .formCV {
 	border-radius: 0.25rem;
 	background-color: rgb(225, 200, 175);
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 2rem;
 	width: 25rem;
 }
 
@@ -153,25 +183,11 @@ textarea {
 	box-sizing: border-box;
 	width: 100%;
 	padding: 0.25rem;
-	margin: 0.25rem 0;
+	margin: 0.25rem;
 }
 
 textarea {
 	resize: none;
-}
-
-.previewCV {
-	width: 800px;
-	height: 1000px;
-}
-
-h1 {
-	min-height: 2.5rem;
-}
-
-p {
-	min-height: 1.5rem;
-	margin: 0.25rem 0;
 }
 
 .experienceCV p,
@@ -186,7 +202,6 @@ p {
 
 .headerCV {
 	width: 100%;
-	min-height: 7rem;
 	padding: 0.5rem;
 	background-color: rgba(0, 150, 255, 0.75);
 	box-sizing: border-box;
@@ -197,7 +212,7 @@ p {
 	justify-content: space-between;
 	width: 100%;
 	height: 100%;
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(53, 45, 45);
 }
 
 .leftPanelCV {
@@ -239,6 +254,7 @@ form div {
 	background-color: rgba(0, 0, 0, 0.75);
 }
 
+.descriptionCV,
 .item {
 	display: flex;
 	justify-content: space-between;
@@ -256,7 +272,7 @@ textarea,
 label p,
 span[name='photo'] {
 	font-size: 1rem;
-	margin: 0.25rem 0;
+	margin: 0.25rem;
 	padding: 0.25rem;
 	border: 1px solid rgb(125, 125, 125);
 	width: 100%;
@@ -268,9 +284,10 @@ input[name='photo'] {
 }
 
 span.date {
-	margin: 0.25rem 0;
+	margin: 0.25rem;
 	position: absolute;
 	right: 0;
+	line-height: 1.5rem;
 }
 
 .grayHR {
