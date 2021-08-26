@@ -8,16 +8,13 @@ import emptyCV from './components/Utils/emptyCV';
 import { nanoid } from 'nanoid';
 
 function App() {
-	const [inputMode, setInputMode] = useState('direct');
-	const [savedCVData, setSavedCVData] = useState(emptyCV);
-	const [requestSave, setRequestSave] = useState(false);
-
-	const [allCVData, setAllCVData] = useState(savedCVData);
+	const [displayMode, setDisplayMode] = useState('direct');
+	const [currentCVData, setCurrentCVData] = useState(emptyCV);
 
 	const handlers = {
-		handlePersonalChange(e) {
+		changePersonal(e) {
 			const { name, value } = e.target;
-			setAllCVData((prevState) => ({
+			setCurrentCVData((prevState) => ({
 				...prevState,
 				personal: {
 					...prevState.personal,
@@ -26,7 +23,7 @@ function App() {
 			}));
 		},
 
-		handleFileChange(e) {
+		changeFile(e) {
 			const { name } = e.target;
 			const file = e.target.files[0];
 			if (!file) {
@@ -34,7 +31,7 @@ function App() {
 			}
 			const reader = new FileReader();
 			reader.onload = () => {
-				setAllCVData((prevState) => ({
+				setCurrentCVData((prevState) => ({
 					...prevState,
 					personal: {
 						...prevState.personal,
@@ -45,9 +42,9 @@ function App() {
 			reader.readAsDataURL(file);
 		},
 
-		handleExperienceChange(e, id) {
+		changeExperience(e, id) {
 			const { name, value } = e.target;
-			setAllCVData((prevState) => {
+			setCurrentCVData((prevState) => {
 				const newState = prevState.experience.map((item) => {
 					if (item.id === id) {
 						return { ...item, [name]: value };
@@ -58,9 +55,9 @@ function App() {
 			});
 		},
 
-		handleAddExperience(e) {
+		addExperience(e) {
 			e.preventDefault();
-			setAllCVData((prevState) => ({
+			setCurrentCVData((prevState) => ({
 				...prevState,
 				experience: [
 					...prevState.experience,
@@ -76,9 +73,9 @@ function App() {
 			}));
 		},
 
-		handleRemoveExperience(e, id) {
+		removeExperience(e, id) {
 			e.preventDefault();
-			setAllCVData((prevState) => ({
+			setCurrentCVData((prevState) => ({
 				...prevState,
 				experience: prevState.experience.filter(
 					(item) => item.id !== id
@@ -86,9 +83,9 @@ function App() {
 			}));
 		},
 
-		handleEducationChange(e, id) {
+		changeEducation(e, id) {
 			const { name, value } = e.target;
-			setAllCVData((prevState) => {
+			setCurrentCVData((prevState) => {
 				const newState = prevState.education.map((item) => {
 					if (item.id === id) {
 						return { ...item, [name]: value };
@@ -99,9 +96,9 @@ function App() {
 			});
 		},
 
-		handleAddEducati(e) {
+		addEducation(e) {
 			e.preventDefault();
-			setAllCVData((prevState) => ({
+			setCurrentCVData((prevState) => ({
 				...prevState,
 				education: [
 					...prevState.education,
@@ -118,33 +115,20 @@ function App() {
 			}));
 		},
 
-		handleRemoveEducation(e, id) {
+		removeEducation(e, id) {
 			e.preventDefault();
-			setAllCVData((prevState) => ({
+			setCurrentCVData((prevState) => ({
 				...prevState,
 				education: prevState.education.filter((item) => item.id !== id),
 			}));
 		},
 	};
 
-	useEffect(() => {
-		const localCVData = JSON.parse(localStorage.getItem('savedCVData'));
-
-		if (localCVData) {
-			setSavedCVData((prevState) => localCVData);
-		}
-	}, []);
-
-	function changeInputMode(e) {
-		setInputMode((prevState) => e.target.id);
+	function changeDisplayMode(e) {
+		setDisplayMode((prevState) => e.target.id);
 	}
 
-	function requestSaveToLS() {
-		setRequestSave((prevState) => true);
-	}
-
-	function saveDataToLS(data) {
-		setRequestSave((prevState) => false);
+	function saveAllData(data) {
 		localStorage.setItem('savedCVData', JSON.stringify(data));
 	}
 
@@ -152,28 +136,26 @@ function App() {
 		localStorage.clear();
 	}
 
+	useEffect(() => {
+		const localData = JSON.parse(localStorage.getItem('savedCVData'));
+		if (localData) {
+			setCurrentCVData((prevState) => localData);
+		}
+	}, []);
+
 	return (
 		<>
 			<Header
-				inputMode={inputMode}
-				changeInputMode={changeInputMode}
-				requestSave={requestSaveToLS}
+				mode={displayMode}
+				changeMode={changeDisplayMode}
+				saveData={saveAllData}
 				clearData={clearAllData}
 			/>
 			<div className='main'>
-				{inputMode === 'direct' ? (
-					<DirectCV
-						savedCVData={savedCVData}
-						requestSave={requestSave}
-						saveDataToLS={saveDataToLS}
-					/>
+				{displayMode === 'direct' ? (
+					<DirectCV data={currentCVData} {...handlers} />
 				) : (
-					<FormPreviewCV
-						savedCVData={savedCVData}
-						requestSave={requestSave}
-						saveDataToLS={saveDataToLS}
-						test={handlers}
-					/>
+					<FormPreviewCV data={currentCVData} {...handlers} />
 				)}
 			</div>
 			<Footer />
