@@ -1,13 +1,17 @@
-import Overview from './DirectCVcomponents/Overview';
-import Editing from './DirectCVcomponents/Editing';
+function DirectCV(props) {
+	const {
+		data,
+		changePersonal,
+		changeFile,
+		changeExperience,
+		addExperience,
+		removeExperience,
+		changeEducation,
+		addEducation,
+		removeEducation,
+	} = props;
 
-function DirectCV() {
-	return (
-		<div className='directCV'>
-			<Overview />
-			<Editing />
-		</div>
-	);
+	return <div className='directCV'></div>;
 }
 
 export default DirectCV;
