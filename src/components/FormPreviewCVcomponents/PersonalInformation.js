@@ -1,4 +1,5 @@
 function PersonalInformation(props) {
+	const { data, handleChange, handleFile } = props;
 	return (
 		<section>
 			<h3>Personal Information</h3>
@@ -8,8 +9,8 @@ function PersonalInformation(props) {
 						type='text'
 						name='firstName'
 						placeholder='First Name'
-						value={props.data.firstName}
-						onChange={props.handleChange}
+						value={data.firstName}
+						onChange={handleChange}
 					/>
 				</label>
 				<label>
@@ -17,8 +18,8 @@ function PersonalInformation(props) {
 						type='text'
 						name='lastName'
 						placeholder='Last Name'
-						value={props.data.lastName}
-						onChange={props.handleChange}
+						value={data.lastName}
+						onChange={handleChange}
 					/>
 				</label>
 				<label>
@@ -26,8 +27,8 @@ function PersonalInformation(props) {
 						type='text'
 						name='title'
 						placeholder='Title'
-						value={props.data.title}
-						onChange={props.handleChange}
+						value={data.title}
+						onChange={handleChange}
 					/>
 				</label>
 				<label>
@@ -37,7 +38,7 @@ function PersonalInformation(props) {
 						name='photo'
 						placeholder='Photo'
 						accept='.png,.jpeg,.jpg'
-						onChange={props.handleFile}
+						onChange={handleFile}
 					/>
 				</label>
 				<label>
@@ -46,8 +47,8 @@ function PersonalInformation(props) {
 						name='birth'
 						min='1950-01-01'
 						max='2050-12-31'
-						value={props.data.birth}
-						onChange={props.handleChange}
+						value={data.birth}
+						onChange={handleChange}
 					/>
 				</label>
 				<label>
@@ -55,8 +56,8 @@ function PersonalInformation(props) {
 						type='text'
 						name='address'
 						placeholder='Address'
-						value={props.data.address}
-						onChange={props.handleChange}
+						value={data.address}
+						onChange={handleChange}
 					/>
 				</label>
 				<label>
@@ -64,8 +65,8 @@ function PersonalInformation(props) {
 						type='tel'
 						name='phone'
 						placeholder='Phone'
-						value={props.data.phone}
-						onChange={props.handleChange}
+						value={data.phone}
+						onChange={handleChange}
 					/>
 				</label>
 				<label>
@@ -73,8 +74,8 @@ function PersonalInformation(props) {
 						type='email'
 						name='email'
 						placeholder='Email'
-						value={props.data.email}
-						onChange={props.handleChange}
+						value={data.email}
+						onChange={handleChange}
 					/>
 				</label>
 				<label>
@@ -83,8 +84,8 @@ function PersonalInformation(props) {
 						name='description'
 						rows='3'
 						placeholder='Description'
-						value={props.data.description}
-						onChange={props.handleChange}
+						value={data.description}
+						onChange={handleChange}
 					/>
 				</label>
 			</form>
