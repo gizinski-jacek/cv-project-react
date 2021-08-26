@@ -126,7 +126,7 @@ function App() {
 
 	const headerHandlers = {
 		changeMode(e) {
-			setMode((prevState) => e.target.id);
+			setMode(e.target.id);
 		},
 
 		saveData() {
@@ -135,13 +135,14 @@ function App() {
 
 		wipeData() {
 			localStorage.clear();
+			setCurrentData(emptyCV);
 		},
 	};
 
 	useEffect(() => {
 		const data = JSON.parse(localStorage.getItem('localData'));
 		if (data) {
-			setCurrentData((prevState) => data);
+			setCurrentData(data);
 		}
 	}, []);
 
