@@ -36,8 +36,12 @@ function PreviewCV(props) {
 				<h1>
 					{personal.firstName} {personal.lastName}
 				</h1>
-				<hr className='blackHR' />
-				<h2>{personal.title}</h2>
+				{personal.title ? (
+					<>
+						<hr className='blackHR' />
+						<h2>{personal.title}</h2>
+					</>
+				) : null}
 			</div>
 			<div className='mainBodyCV'>
 				<div className='leftPanelCV'>
