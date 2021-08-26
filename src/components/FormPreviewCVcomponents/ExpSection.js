@@ -1,4 +1,5 @@
 function ExpSection(props) {
+	const { data, handleChange, handleRemove } = props;
 	return (
 		<form>
 			<label>
@@ -6,8 +7,8 @@ function ExpSection(props) {
 					type='text'
 					name='company'
 					placeholder='Company'
-					value={props.data.company}
-					onChange={(e) => props.handleChange(e, props.data.id)}
+					value={data.company}
+					onChange={(e) => handleChange(e, data.id)}
 				/>
 			</label>
 			<label>
@@ -15,8 +16,8 @@ function ExpSection(props) {
 					type='text'
 					name='city'
 					placeholder='City'
-					value={props.data.city}
-					onChange={(e) => props.handleChange(e, props.data.id)}
+					value={data.city}
+					onChange={(e) => handleChange(e, data.id)}
 				/>
 			</label>
 			<label>
@@ -24,8 +25,8 @@ function ExpSection(props) {
 					type='text'
 					name='position'
 					placeholder='Position'
-					value={props.data.position}
-					onChange={(e) => props.handleChange(e, props.data.id)}
+					value={data.position}
+					onChange={(e) => handleChange(e, data.id)}
 				/>
 			</label>
 			<label>
@@ -35,8 +36,8 @@ function ExpSection(props) {
 					placeholder='Started'
 					min='1950-01-01'
 					max='2050-12-31'
-					value={props.data.workStart}
-					onChange={(e) => props.handleChange(e, props.data.id)}
+					value={data.workStart}
+					onChange={(e) => handleChange(e, data.id)}
 				/>
 			</label>
 			<label>
@@ -46,13 +47,13 @@ function ExpSection(props) {
 					placeholder='Ended'
 					min='1950-01-01'
 					max='2050-12-31'
-					value={props.data.workEnd}
-					onChange={(e) => props.handleChange(e, props.data.id)}
+					value={data.workEnd}
+					onChange={(e) => handleChange(e, data.id)}
 				/>
 			</label>
 			<button
 				className='deleteBtn'
-				onClick={(e) => props.handleRemove(e, props.data.id)}
+				onClick={(e) => handleRemove(e, data.id)}
 			>
 				Delete above section
 			</button>
