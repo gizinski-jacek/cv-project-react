@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import DirectCV from './components/CVcomponents/DirectCV';
-import FormPreviewCV from './components/CVcomponents/FormPreviewCV';
+import DirectCV from './components/DirectCV';
+import FormPreviewCV from './components/FormPreviewCV';
 import Footer from './components/Footer';
-import emptyCV from './components/CVcomponents/emptyCV';
+import emptyCV from './components/Utils/emptyCV';
 import { nanoid } from 'nanoid';
 
 function App() {
