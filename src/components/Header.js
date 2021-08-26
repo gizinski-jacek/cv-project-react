@@ -1,33 +1,31 @@
 function Header(props) {
+	const { mode, changeMode, saveData, clearData } = props;
 	return (
 		<div className='header'>
 			<h1>CV Creator</h1>
 			<div className='inputMode'>
-				{props.inputMode === 'direct' ? (
+				{mode === 'direct' ? (
 					<>
 						<button
 							id='direct'
 							className='activeInputMode'
-							onClick={props.changeInputMode}
+							onClick={changeMode}
 						>
 							Direct Edit
 						</button>
-						<button
-							id='formPreview'
-							onClick={props.changeInputMode}
-						>
+						<button id='formPreview' onClick={changeMode}>
 							{'Form & Preview'}
 						</button>
 					</>
 				) : (
 					<>
-						<button id='direct' onClick={props.changeInputMode}>
+						<button id='direct' onClick={changeMode}>
 							Direct Edit
 						</button>
 						<button
 							id='formPreview'
 							className='activeInputMode'
-							onClick={props.changeInputMode}
+							onClick={changeMode}
 						>
 							{'Form & Preview'}
 						</button>
@@ -35,10 +33,10 @@ function Header(props) {
 				)}
 			</div>
 			<div className='CVcontrols'>
-				<button id='save' onClick={props.requestSave}>
+				<button id='save' onClick={saveData}>
 					Save
 				</button>
-				<button id='clear' onClick={props.clearData}>
+				<button id='clear' onClick={clearData}>
 					Clear
 				</button>
 			</div>
