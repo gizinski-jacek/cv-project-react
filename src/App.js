@@ -8,13 +8,13 @@ import emptyCV from './components/Utils/emptyCV';
 import { nanoid } from 'nanoid';
 
 function App() {
-	const [displayMode, setDisplayMode] = useState('direct');
-	const [currentCVData, setCurrentCVData] = useState(emptyCV);
+	const [mode, setMode] = useState('direct');
+	const [currentData, setCurrentData] = useState(emptyCV);
 
-	const handlers = {
+	const dataHandlers = {
 		changePersonal(e) {
 			const { name, value } = e.target;
-			setCurrentCVData((prevState) => ({
+			setCurrentData((prevState) => ({
 				...prevState,
 				personal: {
 					...prevState.personal,
@@ -31,7 +31,7 @@ function App() {
 			}
 			const reader = new FileReader();
 			reader.onload = () => {
-				setCurrentCVData((prevState) => ({
+				setCurrentData((prevState) => ({
 					...prevState,
 					personal: {
 						...prevState.personal,
@@ -44,7 +44,7 @@ function App() {
 
 		changeExperience(e, id) {
 			const { name, value } = e.target;
-			setCurrentCVData((prevState) => {
+			setCurrentData((prevState) => {
 				const newState = prevState.experience.map((item) => {
 					if (item.id === id) {
 						return { ...item, [name]: value };
@@ -57,7 +57,7 @@ function App() {
 
 		addExperience(e) {
 			e.preventDefault();
-			setCurrentCVData((prevState) => ({
+			setCurrentData((prevState) => ({
 				...prevState,
 				experience: [
 					...prevState.experience,
@@ -75,7 +75,7 @@ function App() {
 
 		removeExperience(e, id) {
 			e.preventDefault();
-			setCurrentCVData((prevState) => ({
+			setCurrentData((prevState) => ({
 				...prevState,
 				experience: prevState.experience.filter(
 					(item) => item.id !== id
@@ -85,7 +85,7 @@ function App() {
 
 		changeEducation(e, id) {
 			const { name, value } = e.target;
-			setCurrentCVData((prevState) => {
+			setCurrentData((prevState) => {
 				const newState = prevState.education.map((item) => {
 					if (item.id === id) {
 						return { ...item, [name]: value };
@@ -98,7 +98,7 @@ function App() {
 
 		addEducation(e) {
 			e.preventDefault();
-			setCurrentCVData((prevState) => ({
+			setCurrentData((prevState) => ({
 				...prevState,
 				education: [
 					...prevState.education,
@@ -117,45 +117,42 @@ function App() {
 
 		removeEducation(e, id) {
 			e.preventDefault();
-			setCurrentCVData((prevState) => ({
+			setCurrentData((prevState) => ({
 				...prevState,
 				education: prevState.education.filter((item) => item.id !== id),
 			}));
 		},
 	};
 
-	function changeDisplayMode(e) {
-		setDisplayMode((prevState) => e.target.id);
-	}
+	const headerHandlers = {
+		changeMode(e) {
+			setMode((prevState) => e.target.id);
+		},
 
-	function saveAllData(data) {
-		localStorage.setItem('savedCVData', JSON.stringify(data));
-	}
+		saveData() {
+			localStorage.setItem('localData', JSON.stringify(currentData));
+		},
 
-	function clearAllData() {
-		localStorage.clear();
-	}
+		clearData() {
+			localStorage.clear();
+		},
+	};
 
 	useEffect(() => {
-		const localData = JSON.parse(localStorage.getItem('savedCVData'));
-		if (localData) {
-			setCurrentCVData((prevState) => localData);
+		const data = JSON.parse(localStorage.getItem('localData'));
+		if (data) {
+			setCurrentData((prevState) => data);
 		}
 	}, []);
 
 	return (
 		<>
-			<Header
-				mode={displayMode}
-				changeMode={changeDisplayMode}
-				saveData={saveAllData}
-				clearData={clearAllData}
-			/>
+			<Header mode={mode} {...headerHandlers} />
 			<div className='main'>
-				{displayMode === 'direct' ? (
-					<DirectCV data={currentCVData} {...handlers} />
+				{mode === 'direct' ? (
+					<DirectCV data={currentData} {...dataHandlers} />
 				) : (
-					<FormPreviewCV data={currentCVData} {...handlers} />
+					<FormPreviewCV data={currentData} {...dataHandlers} />
 				)}
 			</div>
 			<Footer />
