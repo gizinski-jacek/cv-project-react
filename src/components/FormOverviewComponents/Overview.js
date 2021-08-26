@@ -1,7 +1,7 @@
-function PreviewCV(props) {
+function Overview(props) {
 	const { personal, experience, education } = props.data;
 
-	const experienceView = experience.map((item) => {
+	const expDisplay = experience.map((item) => {
 		return (
 			<div key={item.id} className='item'>
 				<span className='date'>
@@ -15,7 +15,7 @@ function PreviewCV(props) {
 		);
 	});
 
-	const educationView = education.map((item) => {
+	const eduDisplay = education.map((item) => {
 		return (
 			<div key={item.id} className='item'>
 				<span className='date'>
@@ -43,7 +43,7 @@ function PreviewCV(props) {
 					</>
 				) : null}
 			</div>
-			<div className='mainBodyCV'>
+			<div className='mainCVBody'>
 				<div className='leftPanelCV'>
 					<div>
 						<img src={personal.photo} alt='' />
@@ -70,20 +70,20 @@ function PreviewCV(props) {
 					</div>
 				</div>
 				<div className='rightPanelCV'>
-					<div className='descriptionCV'>
+					<div className='description'>
 						<h3>Description</h3>
 						<hr className='blackHR' />
 						<p>{personal.description}</p>
 					</div>
-					<div className='experienceCV'>
+					<div className='experience'>
 						<h3>Experience</h3>
 						<hr className='blackHR' />
-						{experienceView}
+						{expDisplay}
 					</div>
-					<div className='educationCV'>
+					<div className='education'>
 						<h3>Education</h3>
 						<hr className='blackHR' />
-						{educationView}
+						{eduDisplay}
 					</div>
 				</div>
 			</div>
@@ -91,4 +91,4 @@ function PreviewCV(props) {
 	);
 }
 
-export default PreviewCV;
+export default Overview;

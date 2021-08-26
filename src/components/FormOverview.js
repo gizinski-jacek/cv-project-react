@@ -1,9 +1,9 @@
-import PreviewCV from './FormPreviewCVcomponents/PreviewCV';
-import PersonalInformation from './FormPreviewCVcomponents/PersonalInformation';
-import Experience from './FormPreviewCVcomponents/Experience';
-import Education from './FormPreviewCVcomponents/Education';
+import Overview from './FormOverviewComponents/Overview';
+import PersonalInformation from './FormOverviewComponents/PersonalInformation';
+import Experience from './FormOverviewComponents/Experience';
+import Education from './FormOverviewComponents/Education';
 
-function FormPreviewCV(props) {
+function FormOverview(props) {
 	const {
 		data,
 		changePersonal,
@@ -17,11 +17,11 @@ function FormPreviewCV(props) {
 	} = props;
 
 	return (
-		<div className='formPreviewCV'>
-			<div className='previewCV'>
-				<PreviewCV data={data} />
+		<div className='formOverview'>
+			<div className='overview'>
+				<Overview data={data} />
 			</div>
-			<div className='formCV'>
+			<div className='dataForm'>
 				<PersonalInformation
 					data={data.personal}
 					handleChange={changePersonal}
@@ -44,4 +44,4 @@ function FormPreviewCV(props) {
 	);
 }
 
-export default FormPreviewCV;
+export default FormOverview;

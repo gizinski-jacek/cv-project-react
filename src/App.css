@@ -30,13 +30,13 @@ body {
 	background-color: rgb(50, 50, 50);
 }
 
-.inputMode {
+.mode {
 	display: flex;
 	justify-content: center;
 	padding: 0.5rem;
 }
 
-.inputMode button {
+.mode button {
 	border: 1px solid rgb(255, 255, 255);
 	background-color: rgb(50, 125, 50);
 	width: 10rem;
@@ -45,30 +45,30 @@ body {
 	font-weight: 600;
 }
 
-.inputMode button:hover {
+.mode button:hover {
 	background-color: rgb(50, 150, 50);
 	width: 10rem;
 }
 
-#direct {
+#directEdit {
 	border-radius: 0.5rem 0 0 0.5rem;
 }
 
-#formPreview {
+#formOverview {
 	border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.activeInputMode {
+.activeMode {
 	background-color: rgb(50, 200, 75) !important;
 }
 
-.CVcontrols {
+.dataControls {
 	display: flex;
 	justify-content: center;
 	padding: 0.5rem;
 }
 
-.CVcontrols button {
+.dataControls button {
 	border: 1px solid rgb(255, 255, 255);
 	width: 5rem;
 	padding: 0.25rem 0.5rem;
@@ -76,27 +76,22 @@ body {
 	font-weight: 600;
 }
 
-#save {
+#saveData {
 	background-color: rgb(0, 150, 255);
 	border-radius: 0.5rem 0 0 0.5rem;
 }
 
-#save:hover {
+#saveData:hover {
 	background-color: rgb(0, 175, 255);
 }
 
-#clear {
+#wipeData {
 	background-color: rgb(255, 75, 75);
 	border-radius: 0 0.5rem 0.5rem 0;
 }
 
-#clear:hover {
+#wipeData:hover {
 	background-color: rgb(255, 100, 100);
-}
-
-title {
-	margin: 0 1rem;
-	padding: 0.25rem;
 }
 
 .header h1 {
@@ -132,19 +127,19 @@ h5 {
 	margin: 0.25rem;
 }
 
-.directCV {
+.directEdit {
 	width: 100%;
 }
 
-.formPreviewCV {
+.formOverview {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	padding: 2rem;
 }
 
-.previewCV,
-.formCV {
+.overview,
+.dataForm {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -152,14 +147,14 @@ h5 {
 	box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.75);
 }
 
-.previewCV {
+.overview {
 	position: sticky;
 	top: 1rem;
 	width: 800px;
 	height: 900px;
 }
 
-.formCV {
+.dataForm {
 	border-radius: 0.25rem;
 	background-color: rgb(225, 200, 175);
 	padding: 0.5rem 2rem;
@@ -190,14 +185,14 @@ textarea {
 	resize: none;
 }
 
-.experienceCV p,
-.educationCV p {
-	width: 50%;
+.experience,
+.education {
+	margin: 1rem 0;
 }
 
-.experienceCV,
-.educationCV {
-	margin: 1rem 0;
+.experience p,
+.education p {
+	width: 50%;
 }
 
 .headerCV {
@@ -207,7 +202,7 @@ textarea {
 	box-sizing: border-box;
 }
 
-.mainBodyCV {
+.mainCVBody {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
@@ -254,7 +249,7 @@ form div {
 	background-color: rgba(0, 0, 0, 0.75);
 }
 
-.descriptionCV,
+.description,
 .item {
 	display: flex;
 	justify-content: space-between;

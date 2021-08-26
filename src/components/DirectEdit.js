@@ -1,4 +1,4 @@
-function DirectCV(props) {
+function DirectEdit(props) {
 	const {
 		data,
 		changePersonal,
@@ -11,7 +11,7 @@ function DirectCV(props) {
 		removeEducation,
 	} = props;
 
-	return <div className='directCV'></div>;
+	return <div className='directEdit'></div>;
 }
 
-export default DirectCV;
+export default DirectEdit;

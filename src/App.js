@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import DirectCV from './components/DirectCV';
-import FormPreviewCV from './components/FormPreviewCV';
+import DirectEdit from './components/DirectEdit';
+import FormOverview from './components/FormOverview';
 import Footer from './components/Footer';
 import emptyCV from './components/Utils/emptyCV';
 import { nanoid } from 'nanoid';
 
 function App() {
-	const [mode, setMode] = useState('direct');
+	const [mode, setMode] = useState('directEdit');
 	const [currentData, setCurrentData] = useState(emptyCV);
 
 	const dataHandlers = {
@@ -133,7 +133,7 @@ function App() {
 			localStorage.setItem('localData', JSON.stringify(currentData));
 		},
 
-		clearData() {
+		wipeData() {
 			localStorage.clear();
 		},
 	};
@@ -149,10 +149,10 @@ function App() {
 		<>
 			<Header mode={mode} {...headerHandlers} />
 			<div className='main'>
-				{mode === 'direct' ? (
-					<DirectCV data={currentData} {...dataHandlers} />
+				{mode === 'directEdit' ? (
+					<DirectEdit data={currentData} {...dataHandlers} />
 				) : (
-					<FormPreviewCV data={currentData} {...dataHandlers} />
+					<FormOverview data={currentData} {...dataHandlers} />
 				)}
 			</div>
 			<Footer />
