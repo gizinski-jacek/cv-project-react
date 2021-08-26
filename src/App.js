@@ -12,6 +12,121 @@ function App() {
 	const [savedCVData, setSavedCVData] = useState(emptyCV);
 	const [requestSave, setRequestSave] = useState(false);
 
+	const [allCVData, setAllCVData] = useState(savedCVData);
+
+	const handlers = {
+		handlePersonalChange(e) {
+			const { name, value } = e.target;
+			setAllCVData((prevState) => ({
+				...prevState,
+				personal: {
+					...prevState.personal,
+					[name]: value,
+				},
+			}));
+		},
+
+		handleFileChange(e) {
+			const { name } = e.target;
+			const file = e.target.files[0];
+			if (!file) {
+				return;
+			}
+			const reader = new FileReader();
+			reader.onload = () => {
+				setAllCVData((prevState) => ({
+					...prevState,
+					personal: {
+						...prevState.personal,
+						[name]: reader.result,
+					},
+				}));
+			};
+			reader.readAsDataURL(file);
+		},
+
+		handleExperienceChange(e, id) {
+			const { name, value } = e.target;
+			setAllCVData((prevState) => {
+				const newState = prevState.experience.map((item) => {
+					if (item.id === id) {
+						return { ...item, [name]: value };
+					}
+					return item;
+				});
+				return { ...prevState, experience: [...newState] };
+			});
+		},
+
+		handleAddExperience(e) {
+			e.preventDefault();
+			setAllCVData((prevState) => ({
+				...prevState,
+				experience: [
+					...prevState.experience,
+					{
+						id: nanoid(),
+						company: '',
+						position: '',
+						city: '',
+						workStart: '',
+						workEnd: '',
+					},
+				],
+			}));
+		},
+
+		handleRemoveExperience(e, id) {
+			e.preventDefault();
+			setAllCVData((prevState) => ({
+				...prevState,
+				experience: prevState.experience.filter(
+					(item) => item.id !== id
+				),
+			}));
+		},
+
+		handleEducationChange(e, id) {
+			const { name, value } = e.target;
+			setAllCVData((prevState) => {
+				const newState = prevState.education.map((item) => {
+					if (item.id === id) {
+						return { ...item, [name]: value };
+					}
+					return item;
+				});
+				return { ...prevState, education: [...newState] };
+			});
+		},
+
+		handleAddEducati(e) {
+			e.preventDefault();
+			setAllCVData((prevState) => ({
+				...prevState,
+				education: [
+					...prevState.education,
+					{
+						id: nanoid(),
+						university: '',
+						uniCity: '',
+						degree: '',
+						subject: '',
+						uniStart: '',
+						uniEnd: '',
+					},
+				],
+			}));
+		},
+
+		handleRemoveEducation(e, id) {
+			e.preventDefault();
+			setAllCVData((prevState) => ({
+				...prevState,
+				education: prevState.education.filter((item) => item.id !== id),
+			}));
+		},
+	};
+
 	useEffect(() => {
 		const localCVData = JSON.parse(localStorage.getItem('savedCVData'));
 
@@ -57,6 +172,7 @@ function App() {
 						savedCVData={savedCVData}
 						requestSave={requestSave}
 						saveDataToLS={saveDataToLS}
+						test={handlers}
 					/>
 				)}
 			</div>
