@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
-import Main from './components/Main';
+import DirectCV from './components/CVcomponents/DirectCV';
+import FormPreviewCV from './components/CVcomponents/FormPreviewCV';
 import Footer from './components/Footer';
 import emptyCV from './components/CVcomponents/emptyCV';
+import { nanoid } from 'nanoid';
 
 function App() {
 	const [inputMode, setInputMode] = useState('direct');
@@ -43,12 +45,21 @@ function App() {
 				requestSave={requestSaveToLS}
 				clearData={clearAllData}
 			/>
-			<Main
-				inputMode={inputMode}
-				savedData={savedCVData}
-				requestSave={requestSave}
-				saveDataToLS={saveDataToLS}
-			/>
+			<div className='main'>
+				{inputMode === 'direct' ? (
+					<DirectCV
+						savedCVData={savedCVData}
+						requestSave={requestSave}
+						saveDataToLS={saveDataToLS}
+					/>
+				) : (
+					<FormPreviewCV
+						savedCVData={savedCVData}
+						requestSave={requestSave}
+						saveDataToLS={saveDataToLS}
+					/>
+				)}
+			</div>
 			<Footer />
 		</>
 	);
