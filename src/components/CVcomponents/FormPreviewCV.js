@@ -6,11 +6,11 @@ import Education from './FormPreviewCVcomponents/Education';
 import { nanoid } from 'nanoid';
 
 function FormPreviewCV(props) {
-	const { savedData, requestSave, saveDataToLS } = props;
+	const { savedCVData, requestSave, saveDataToLS } = props;
 
 	useEffect(() => saveDataToLS(allCVData), [requestSave]);
 
-	const [allCVData, setAllCVData] = useState(savedData);
+	const [allCVData, setAllCVData] = useState(savedCVData);
 
 	function handlePersonalChange(e) {
 		const { name, value } = e.target;
