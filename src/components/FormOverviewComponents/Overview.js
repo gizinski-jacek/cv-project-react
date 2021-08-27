@@ -36,12 +36,8 @@ function Overview(props) {
 				<h1>
 					{personal.firstName} {personal.lastName}
 				</h1>
-				{personal.title && (
-					<>
-						<hr className='blackHR' />
-						<h2>{personal.title}</h2>
-					</>
-				)}
+				<hr className='blackHR' />
+				<h2>{personal.title}</h2>
 			</div>
 			<div className='mainCVBody'>
 				<div className='leftPanelCV'>
