@@ -4,26 +4,26 @@ function Header(props) {
 		<div className='header'>
 			<h1>CV Creator</h1>
 			<div className='mode'>
-				{mode === 'directEdit' ? (
+				{mode === 'directEditBtn' ? (
 					<>
 						<button
-							id='directEdit'
+							id='directEditBtn'
 							className='activeMode'
 							onClick={changeMode}
 						>
 							Direct Edit
 						</button>
-						<button id='formOverview' onClick={changeMode}>
+						<button id='formOverviewBtn' onClick={changeMode}>
 							{'Form & Preview'}
 						</button>
 					</>
 				) : (
 					<>
-						<button id='directEdit' onClick={changeMode}>
+						<button id='directEditBtn' onClick={changeMode}>
 							Direct Edit
 						</button>
 						<button
-							id='formOverview'
+							id='formOverviewBtn'
 							className='activeMode'
 							onClick={changeMode}
 						>

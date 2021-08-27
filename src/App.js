@@ -8,7 +8,7 @@ import emptyCV from './components/Utils/emptyCV';
 import { nanoid } from 'nanoid';
 
 function App() {
-	const [mode, setMode] = useState('directEdit');
+	const [mode, setMode] = useState('directEditBtn');
 	const [currentData, setCurrentData] = useState(emptyCV);
 
 	const dataHandlers = {
@@ -150,7 +150,7 @@ function App() {
 		<>
 			<Header mode={mode} {...headerHandlers} />
 			<div className='main'>
-				{mode === 'directEdit' ? (
+				{mode === 'directEditBtn' ? (
 					<DirectEdit data={currentData} {...dataHandlers} />
 				) : (
 					<FormOverview data={currentData} {...dataHandlers} />

@@ -17,7 +17,7 @@ function FormOverview(props) {
 	} = props;
 
 	return (
-		<div className='formOverview'>
+		<div className='formOverviewMode'>
 			<div className='overview'>
 				<Overview data={data} />
 			</div>
