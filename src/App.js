@@ -151,7 +151,10 @@ function App() {
 			<Header mode={mode} {...headerHandlers} />
 			<div className='main'>
 				{mode === 'directEditBtn' ? (
-					<DirectEdit data={currentData} {...dataHandlers} />
+					<DirectEdit
+						data={currentData}
+						dataHandlers={dataHandlers}
+					/>
 				) : (
 					<FormOverview data={currentData} {...dataHandlers} />
 				)}
