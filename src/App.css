@@ -334,3 +334,51 @@ p:empty:not(:focus)::before {
 .editing div button {
 	border: none;
 }
+
+.headerCV.editing h1 {
+	display: flex;
+}
+
+.headerCV.editing input[name='title'] {
+}
+
+.addBtnFloat {
+	border-radius: 0.25rem;
+	display: none;
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 0, 0);
+	border: 1px solid rgb(0, 0, 0);
+	font-weight: 600;
+}
+
+.addBtnFloat:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(0, 0, 0, 0.75);
+	border: 1px solid rgba(0, 0, 0, 0.75);
+	font-weight: 600;
+}
+
+h3 {
+	display: flex;
+	justify-content: space-between;
+}
+
+.removeBtnFloat {
+	border-radius: 0.25rem;
+	display: block;
+	margin: 0.25rem;
+	position: absolute;
+	bottom: 1rem;
+	right: 0;
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 0, 0);
+	border: 1px solid rgb(0, 0, 0);
+	font-weight: 600;
+}
+
+.removeBtnFloat:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(0, 0, 0, 0.75);
+	border: 1px solid rgba(0, 0, 0, 0.75);
+	font-weight: 600;
+}
