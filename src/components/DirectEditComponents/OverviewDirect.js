@@ -1,3 +1,7 @@
+import PersonalEdit from './PersonalEdit';
+import ExperienceEdit from './ExperienceEdit';
+import EducationEdit from './EducationEdit';
+
 function OverviewDirect(props) {
 	const {
 		personal,
@@ -13,53 +17,28 @@ function OverviewDirect(props) {
 		removeEducation,
 	} = props;
 
-	const expDisplay = experience.map((item) => {
+	function showButton(e) {
+		e.currentTarget.className === 'experience'
+			? (document.getElementById('addExp').style.display = 'flex')
+			: (document.getElementById('addEdu').style.display = 'flex');
+	}
+
+	function hideButton(e) {
+		e.currentTarget.className === 'experience'
+			? (document.getElementById('addExp').style.display = 'none')
+			: (document.getElementById('addEdu').style.display = 'none');
+	}
+
+	const experienceItems = experience.map((item) => {
 		if (props.editing.experience) {
 			return (
-				<div key={item.id} className='item editing'>
-					<span className='date'>
-						<input
-							type='date'
-							name='workStart'
-							placeholder='Started'
-							min='1950-01-01'
-							max='2050-12-31'
-							value={experience.workStart}
-							onChange={(e) => changeExperience(e, item.id)}
-						/>
-						<input
-							type='date'
-							name='workEnd'
-							placeholder='Ended'
-							min='1950-01-01'
-							max='2050-12-31'
-							value={experience.workEnd}
-							onChange={(e) => changeExperience(e, item.id)}
-						/>
-					</span>
-					<input
-						type='text'
-						name='company'
-						placeholder='Company'
-						value={experience.company}
-						onChange={(e) => changeExperience(e, item.id)}
-					/>
-					<input
-						type='text'
-						name='city'
-						placeholder='City'
-						value={experience.city}
-						onChange={(e) => changeExperience(e, item.id)}
-					/>
-					<input
-						type='text'
-						name='position'
-						placeholder='Position'
-						value={experience.position}
-						onChange={(e) => changeExperience(e, item.id)}
-					/>
-					<hr className='grayHR' />
-				</div>
+				<ExperienceEdit
+					key={item.id}
+					item={item}
+					experience={experience}
+					handleChange={changeExperience}
+					handleRemove={removeExperience}
+				/>
 			);
 		} else {
 			return (
@@ -80,60 +59,16 @@ function OverviewDirect(props) {
 		}
 	});
 
-	const eduDisplay = education.map((item) => {
+	const educationItems = education.map((item) => {
 		if (props.editing.education) {
 			return (
-				<div key={item.id} className='item editing'>
-					<span className='date'>
-						<input
-							type='date'
-							name='uniStart'
-							placeholder='Started'
-							min='1950-01-01'
-							max='2050-12-31'
-							value={education.uniStart}
-							onChange={(e) => changeEducation(e, item.id)}
-						/>
-						<input
-							type='date'
-							name='uniEnd'
-							placeholder='Ended'
-							min='1950-01-01'
-							max='2050-12-31'
-							value={education.uniEnd}
-							onChange={(e) => changeEducation(e, item.id)}
-						/>
-					</span>
-					<input
-						type='text'
-						name='university'
-						placeholder='University'
-						value={education.university}
-						onChange={(e) => changeEducation(e, item.id)}
-					/>
-					<input
-						type='text'
-						name='uniCity'
-						placeholder='City'
-						value={education.uniCity}
-						onChange={(e) => changeEducation(e, item.id)}
-					/>
-					<input
-						type='text'
-						name='degree'
-						placeholder='Degree'
-						value={education.degree}
-						onChange={(e) => changeEducation(e, item.id)}
-					/>
-					<input
-						type='text'
-						name='subject'
-						placeholder='Subject'
-						value={education.subject}
-						onChange={(e) => changeEducation(e, item.id)}
-					/>
-					<hr className='grayHR' />
-				</div>
+				<EducationEdit
+					key={item.id}
+					item={item}
+					education={education}
+					handleChange={changeEducation}
+					handleRemove={removeEducation}
+				/>
 			);
 		} else {
 			return (
@@ -157,131 +92,13 @@ function OverviewDirect(props) {
 
 	if (props.editing.personal) {
 		return (
-			<>
-				<div className='headerCV'>
-					<h1>
-						<input
-							type='text'
-							name='firstName'
-							placeholder='First Name'
-							value={personal.firstName}
-							onChange={changePersonal}
-						/>
-						<input
-							type='text'
-							name='lastName'
-							placeholder='Last Name'
-							value={personal.lastName}
-							onChange={changePersonal}
-						/>
-					</h1>
-					<hr className='blackHR' />
-					<input
-						type='text'
-						name='title'
-						placeholder='Title'
-						value={personal.title}
-						onChange={changePersonal}
-					/>
-				</div>
-				<div className='mainCVBody'>
-					<div className='leftPanelCV editing'>
-						<div>
-							<button
-								onClick={() => {
-									document
-										.getElementById('photoFile')
-										.click();
-								}}
-							>
-								<img
-									src={personal.photo}
-									alt=''
-									name='photo'
-									onChange={changeFile}
-								/>
-							</button>
-							<input
-								type='file'
-								id='photoFile'
-								name='photo'
-								placeholder='Photo'
-								accept='.png,.jpeg,.jpg'
-								onChange={changeFile}
-							/>
-						</div>
-						<div>
-							<h3>Date of Birth</h3>
-							<hr className='blackHR' />
-							<input
-								type='date'
-								name='birth'
-								min='1950-01-01'
-								max='2050-12-31'
-								value={personal.birth}
-								onChange={changePersonal}
-							/>
-						</div>
-						<div>
-							<h3>Address</h3>
-							<hr className='blackHR' />
-							<input
-								type='text'
-								name='address'
-								placeholder='Address'
-								value={personal.address}
-								onChange={changePersonal}
-							/>
-						</div>
-						<div>
-							<h3>Phone Number</h3>
-							<hr className='blackHR' />
-							<input
-								type='tel'
-								name='phone'
-								placeholder='Phone'
-								value={personal.phone}
-								onChange={changePersonal}
-							/>
-						</div>
-						<div>
-							<h3>Email</h3>
-							<hr className='blackHR' />
-							<input
-								type='email'
-								name='email'
-								placeholder='Email'
-								value={personal.email}
-								onChange={changePersonal}
-							/>
-						</div>
-					</div>
-					<div className='rightPanelCV'>
-						<div className='description editing'>
-							<h3>Description</h3>
-							<hr className='blackHR' />
-							<textarea
-								type='text'
-								name='description'
-								rows='3'
-								placeholder='Description'
-								value={personal.description}
-								onChange={changePersonal}
-							/>
-						</div>
-						<div className='experience'>
-							<h3>Experience</h3>
-							<hr className='blackHR' />
-							{expDisplay}
-						</div>
-						<div className='education'>
-							<h3>Education</h3>
-							<hr className='blackHR' />
-							{eduDisplay}
-						</div>
-					</div>
-				</div>
-			</>
+			<PersonalEdit
+				personal={personal}
+				handleChange={changePersonal}
+				handleFile={changeFile}
+				experienceItems={experienceItems}
+				educationItems={educationItems}
+			/>
 		);
 	} else {
 		return (
@@ -331,15 +148,43 @@ function OverviewDirect(props) {
 							<hr className='blackHR' />
 							<p>{personal.description}</p>
 						</div>
-						<div className='experience'>
-							<h3>Experience</h3>
+						<div
+							className='experience'
+							onMouseEnter={showButton}
+							onMouseLeave={hideButton}
+						>
+							<h3>
+								Experience
+								<button
+									className='addBtnFloat'
+									id='addExp'
+									type='submit'
+									onClick={addExperience}
+								>
+									Add section
+								</button>
+							</h3>
 							<hr className='blackHR' />
-							{expDisplay}
+							{experienceItems}
 						</div>
-						<div className='education'>
-							<h3>Education</h3>
+						<div
+							className='education'
+							onMouseEnter={showButton}
+							onMouseLeave={hideButton}
+						>
+							<h3>
+								Education
+								<button
+									className='addBtnFloat'
+									id='addEdu'
+									type='submit'
+									onClick={addEducation}
+								>
+									Add section
+								</button>
+							</h3>
 							<hr className='blackHR' />
-							{eduDisplay}
+							{educationItems}
 						</div>
 					</div>
 				</div>
