@@ -2,7 +2,7 @@ import EduSection from './EduSection';
 
 function Education(props) {
 	const { data, handleChange, handleAdd, handleRemove } = props;
-	const eduItems = data.map((item) => (
+	const educationItems = data.map((item) => (
 		<EduSection
 			key={item.id}
 			data={item}
@@ -13,7 +13,7 @@ function Education(props) {
 	return (
 		<section>
 			<h3>Education</h3>
-			{eduItems}
+			{educationItems}
 			<button className='addBtn' type='submit' onClick={handleAdd}>
 				Add section
 			</button>

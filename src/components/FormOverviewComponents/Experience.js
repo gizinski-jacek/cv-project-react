@@ -2,7 +2,7 @@ import ExpSection from './ExpSection';
 
 function Experience(props) {
 	const { data, handleChange, handleAdd, handleRemove } = props;
-	const expItems = data.map((item) => (
+	const experienceItems = data.map((item) => (
 		<ExpSection
 			key={item.id}
 			data={item}
@@ -13,9 +13,9 @@ function Experience(props) {
 	return (
 		<section>
 			<h3>Experience</h3>
-			{expItems}
+			{experienceItems}
 			<button className='addBtn' type='submit' onClick={handleAdd}>
-				Add above section
+				Add section
 			</button>
 		</section>
 	);
