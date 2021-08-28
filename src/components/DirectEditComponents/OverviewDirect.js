@@ -1,4 +1,4 @@
-function OverviewEdit(props) {
+function OverviewDirect(props) {
 	const {
 		personal,
 		experience,
@@ -348,4 +348,4 @@ function OverviewEdit(props) {
 	}
 }
 
-export default OverviewEdit;
+export default OverviewDirect;
