@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import OverviewEdit from './DirectEditComponents/OverviewEdit';
+import OverviewDirect from './DirectEditComponents/OverviewDirect';
 
 function DirectEdit(props) {
 	const [editing, setEditing] = useState({
@@ -19,8 +19,6 @@ function DirectEdit(props) {
 
 	function toggleEdit(e, id) {
 		e.stopPropagation();
-		console.log(e.target.closest('div'));
-
 		setEditing({
 			personal: false,
 			experience: false,
@@ -47,7 +45,7 @@ function DirectEdit(props) {
 	return (
 		<div className='directEditMode' onClick={toggleEditsOff}>
 			<div className='overview'>
-				<OverviewEdit
+				<OverviewDirect
 					{...props.data}
 					{...props.dataHandlers}
 					editing={editing}
