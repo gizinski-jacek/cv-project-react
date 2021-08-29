@@ -6,6 +6,7 @@ function ExperienceEdit(props) {
 		experienceItems,
 		educationItems,
 	} = props;
+
 	return (
 		<>
 			<div className='headerCV editing'>
@@ -73,7 +74,7 @@ function ExperienceEdit(props) {
 					<div>
 						<h3>Address</h3>
 						<hr className='blackHR' />
-						<input
+						<textarea
 							type='text'
 							name='address'
 							placeholder='Address'
