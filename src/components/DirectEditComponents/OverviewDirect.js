@@ -29,6 +29,24 @@ function OverviewDirect(props) {
 			: (document.getElementById('addEdu').style.display = 'none');
 	}
 
+	let fullName;
+	if (personal.firstName || personal.lastName) {
+		fullName = personal.firstName.concat(' ', personal.lastName);
+	}
+
+	let expStartEndDate;
+	if (experience.startDate || education.endDate) {
+		expStartEndDate = experience.startDate.startDate(
+			' - ',
+			education.endDate
+		);
+	}
+
+	let eduStartEndDate;
+	if (education.startDate || education.endDate) {
+		eduStartEndDate = education.startDate.concat(' - ', education.endDate);
+	}
+
 	const experienceItems = experience.map((item) => {
 		if (props.editing.experience) {
 			return (
@@ -47,10 +65,13 @@ function OverviewDirect(props) {
 					className='item'
 					onClick={(e) => props.toggle(e, item.id)}
 				>
-					<span className='date'>
-						{item.workStart} - {item.workEnd}
+					<span
+						className='date'
+						placeholder_text='Start Date - End Date'
+					>
+						{expStartEndDate}
 					</span>
-					<p placeholder_text='Company Name'>{item.company}</p>
+					<p placeholder_text='Company'>{item.company}</p>
 					<p placeholder_text='City'>{item.city}</p>
 					<p placeholder_text='Position'>{item.position}</p>
 					<hr className='grayHR' />
@@ -77,13 +98,20 @@ function OverviewDirect(props) {
 					className='item'
 					onClick={(e) => props.toggle(e, item.id)}
 				>
-					<span className='date'>
-						{item.uniStart} - {item.uniEnd}
+					<span
+						className='date'
+						placeholder_text='Start Date - End Date'
+					>
+						{eduStartEndDate}
 					</span>
-					<p placeholder_text='University Name'>{item.university}</p>
+					<p placeholder_text='University'>{item.university}</p>
 					<p placeholder_text='City'>{item.uniCity}</p>
-					<p>Degree: </p>
-					<p>Subject: </p>
+					<p placeholder_text='Degree:'>
+						{item.degree ? 'Degree: ' + item.degree : null}
+					</p>
+					<p placeholder_text='Subject:'>
+						{item.subject ? 'Subject: ' + item.subject : null}
+					</p>
 					<hr className='grayHR' />
 				</div>
 			);
@@ -104,11 +132,9 @@ function OverviewDirect(props) {
 		return (
 			<>
 				<div className='headerCV' onClick={(e) => props.toggle(e)}>
-					<h1>
-						{personal.firstName} {personal.lastName}
-					</h1>
+					<h1 placeholder_text='Full Name'>{fullName}</h1>
 					<hr className='blackHR' />
-					<h2>{personal.title}</h2>
+					<h2 placeholder_text='Title'>{personal.title}</h2>
 				</div>
 				<div className='mainCVBody'>
 					<div
@@ -121,22 +147,26 @@ function OverviewDirect(props) {
 						<div>
 							<h3>Date of Birth</h3>
 							<hr className='blackHR' />
-							<p>{personal.birth}</p>
+							<p placeholder_text='YYYY-MM-DD'>
+								{personal.birth}
+							</p>
 						</div>
 						<div>
 							<h3>Address</h3>
 							<hr className='blackHR' />
-							<p>{personal.address}</p>
+							<p placeholder_text='Address'>{personal.address}</p>
 						</div>
 						<div>
 							<h3>Phone Number</h3>
 							<hr className='blackHR' />
-							<p>{personal.phone}</p>
+							<p placeholder_text='Phone Number'>
+								{personal.phone}
+							</p>
 						</div>
 						<div>
 							<h3>Email</h3>
 							<hr className='blackHR' />
-							<p>{personal.email}</p>
+							<p placeholder_text='Email'>{personal.email}</p>
 						</div>
 					</div>
 					<div
@@ -146,7 +176,9 @@ function OverviewDirect(props) {
 						<div className='description'>
 							<h3>Description</h3>
 							<hr className='blackHR' />
-							<p>{personal.description}</p>
+							<p placeholder_text='Your description'>
+								{personal.description}
+							</p>
 						</div>
 						<div
 							className='experience'
