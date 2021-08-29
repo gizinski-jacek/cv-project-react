@@ -8,8 +8,11 @@ import emptyCV from './components/Utils/emptyCV';
 import { nanoid } from 'nanoid';
 
 function App() {
+	const localData = JSON.parse(localStorage.getItem('localData'));
 	const [mode, setMode] = useState('directEditBtn');
-	const [currentData, setCurrentData] = useState(emptyCV);
+	const [currentData, setCurrentData] = useState(
+		localData ? localData : emptyCV
+	);
 
 	const dataHandlers = {
 		changePersonal(e) {
@@ -124,7 +127,7 @@ function App() {
 		},
 	};
 
-	const headerHandlers = {
+	const headerControls = {
 		changeMode(e) {
 			setMode(e.target.id);
 		},
@@ -134,21 +137,24 @@ function App() {
 		},
 
 		wipeData() {
-			localStorage.clear();
-			setCurrentData(emptyCV);
+			if (
+				window.confirm(
+					'This will wipe all saved CV data. Are you sure?'
+				)
+			) {
+				localStorage.clear();
+				setCurrentData(emptyCV);
+			}
 		},
 	};
 
 	useEffect(() => {
-		const data = JSON.parse(localStorage.getItem('localData'));
-		if (data) {
-			setCurrentData(data);
-		}
-	}, []);
+		localStorage.setItem('localData', JSON.stringify(currentData));
+	}, [currentData]);
 
 	return (
 		<>
-			<Header mode={mode} {...headerHandlers} />
+			<Header mode={mode} {...headerControls} />
 			<div className='main'>
 				{mode === 'directEditBtn' ? (
 					<DirectEdit
