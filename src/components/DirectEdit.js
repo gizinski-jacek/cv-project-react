@@ -8,42 +8,37 @@ function DirectEdit(props) {
 		education: false,
 	});
 
-	function toggleEditsOff(e) {
+	function toggleAllEditsOff(e) {
 		e.stopPropagation();
-		setEditing({
-			personal: false,
-			experience: false,
-			education: false,
-		});
+		if (e.target.className === 'directEditMode')
+			setEditing({
+				personal: false,
+				experience: false,
+				education: false,
+			});
 	}
 
 	function toggleEdit(e, id) {
 		e.stopPropagation();
-		setEditing({
-			personal: false,
-			experience: false,
-			education: false,
-		});
 		if (id) {
 			const section = e.currentTarget.parentElement.className;
 			setEditing((prevState) => ({
 				...prevState,
 				[section]: true,
 			}));
-		} else {
-			if (
-				e.currentTarget.className !== 'rightPanelCV' ||
-				e.target.closest('div').className === 'description'
-			)
-				setEditing((prevState) => ({
-					...prevState,
-					personal: true,
-				}));
+		} else if (
+			e.currentTarget.className !== 'rightPanelCV' ||
+			e.target.closest('div').className === 'description'
+		) {
+			setEditing((prevState) => ({
+				...prevState,
+				personal: true,
+			}));
 		}
 	}
 
 	return (
-		<div className='directEditMode' onClick={toggleEditsOff}>
+		<div className='directEditMode' onClick={toggleAllEditsOff}>
 			<div className='overview'>
 				<OverviewDirect
 					{...props.data}
