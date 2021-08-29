@@ -39,7 +39,7 @@ body {
 .mode button {
 	border: 1px solid rgb(255, 255, 255);
 	background-color: rgb(50, 125, 50);
-	width: 10rem;
+	width: 160px;
 	padding: 0.25rem 0.5rem;
 	font-size: 1rem;
 	font-weight: 600;
@@ -47,7 +47,6 @@ body {
 
 .mode button:hover {
 	background-color: rgb(50, 150, 50);
-	width: 10rem;
 }
 
 #directEditBtn {
@@ -70,7 +69,7 @@ body {
 
 .dataControls button {
 	border: 1px solid rgb(255, 255, 255);
-	width: 7rem;
+	width: 120px;
 	padding: 0.25rem 0.5rem;
 	font-size: 1rem;
 	font-weight: 600;
@@ -160,7 +159,7 @@ h5 {
 	border-radius: 0.25rem;
 	background-color: rgb(225, 200, 175);
 	padding: 0.5rem 2rem;
-	width: 25rem;
+	width: 400px;
 }
 
 section {
@@ -212,12 +211,21 @@ textarea {
 	background-color: rgb(53, 45, 45);
 }
 
+.headerCV {
+	height: 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
 .leftPanelCV,
 .rightPanelCV {
 	min-height: 800px;
+	box-sizing: border-box;
 }
 
 .leftPanelCV {
+	width: 220px;
 	background-color: rgb(225, 225, 225);
 }
 
@@ -226,7 +234,7 @@ textarea {
 }
 
 .rightPanelCV {
-	width: 75%;
+	width: 580px;
 	background-color: rgb(255, 255, 255);
 }
 
@@ -307,39 +315,68 @@ img {
 	height: 280px;
 }
 
-p:empty:not(:focus)::before {
+:empty:not(:focus)::before {
 	content: attr(placeholder_text);
+	color: rgba(0, 0, 0, 0.5) !important;
 }
 
-.editing span.date {
-	margin: 0.25rem;
+.rightPanelCV .item.editing span.date {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 0;
 	position: absolute;
 	right: 0;
 	line-height: 1.5rem;
 }
 
-.editing .description,
-.editing .item {
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	position: relative;
+.rightPanelCV .item.editing span.date input {
+	width: 195px;
 }
 
-.editing input,
-.editing input {
+.rightPanelCV .item.editing input {
 	width: 50%;
+	height: 1.5rem;
 }
 
-.editing div button {
+.leftPanelCV.editing button {
 	border: none;
+	padding: 0;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.leftPanelCV.editing input,
+.leftPanelCV.editing input[type='date'] {
+	width: 195px;
+}
+
+.leftPanelCV.editing textarea[name='address'] {
+	width: 195px;
+	height: 70px;
+}
+
+.headerCV input {
+	width: 360px;
 }
 
 .headerCV.editing h1 {
 	display: flex;
+	justify-content: space-between;
+}
+
+.headerCV.editing input {
+	margin: 0 0.25rem;
+	padding: 0 0.25rem;
 }
 
 .headerCV.editing input[name='title'] {
+	width: 360px;
+	margin: 0.25rem 0.5rem;
+	padding: 0.25rem;
+}
+
+.description.editing textarea {
+	width: 550px;
 }
 
 .addBtnFloat {
