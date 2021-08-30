@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import Header from './components/Header';
 import DirectEdit from './components/DirectEdit';
@@ -6,10 +6,11 @@ import FormOverview from './components/FormOverview';
 import Footer from './components/Footer';
 import emptyCV from './components/Utils/emptyCV';
 import { nanoid } from 'nanoid';
+import { useReactToPrint } from 'react-to-print';
 
 function App() {
 	const localData = JSON.parse(localStorage.getItem('localData'));
-	const [mode, setMode] = useState('directEditBtn');
+	const [formMode, setFormMode] = useState(true);
 	const [currentData, setCurrentData] = useState(
 		localData ? localData : emptyCV
 	);
@@ -127,21 +128,23 @@ function App() {
 		},
 	};
 
+	const componentRef = useRef();
+
+	const printCV = useReactToPrint({ content: () => componentRef.current });
+
 	const headerControls = {
 		changeMode(e) {
-			setMode(e.target.id);
+			e.target.id === 'formOverviewBtn'
+				? setFormMode(true)
+				: setFormMode(false);
 		},
 
-		saveData() {
+		saveCV() {
 			localStorage.setItem('localData', JSON.stringify(currentData));
 		},
 
-		wipeData() {
-			if (
-				window.confirm(
-					'This will wipe all saved CV data. Are you sure?'
-				)
-			) {
+		resetCV() {
+			if (window.confirm('This will reset all CV data. Are you sure?')) {
 				localStorage.clear();
 				setCurrentData(emptyCV);
 			}
@@ -154,15 +157,20 @@ function App() {
 
 	return (
 		<>
-			<Header mode={mode} {...headerControls} />
+			<Header mode={formMode} {...headerControls} printCV={printCV} />
 			<div className='main'>
-				{mode === 'directEditBtn' ? (
+				{formMode ? (
+					<FormOverview
+						innerRef={componentRef}
+						data={currentData}
+						{...dataHandlers}
+					/>
+				) : (
 					<DirectEdit
+						innerRef={componentRef}
 						data={currentData}
 						dataHandlers={dataHandlers}
 					/>
-				) : (
-					<FormOverview data={currentData} {...dataHandlers} />
 				)}
 			</div>
 			<Footer />
