@@ -51,7 +51,7 @@ function EducationEdit(props) {
 				onChange={(e) => handleChange(e, item.id)}
 			/>
 			<button
-				className='removeBtnFloat'
+				className='deleteBtnInCV'
 				type='submit'
 				onClick={(e) => handleRemove(e, item.id)}
 			>
