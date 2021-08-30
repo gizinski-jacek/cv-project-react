@@ -4,6 +4,7 @@ import EducationEdit from './EducationEdit';
 
 function OverviewDirect(props) {
 	const {
+		innerRef,
 		personal,
 		experience,
 		education,
@@ -130,7 +131,7 @@ function OverviewDirect(props) {
 		);
 	} else {
 		return (
-			<>
+			<div ref={innerRef}>
 				<div className='headerCV' onClick={(e) => props.toggle(e)}>
 					<h1 placeholder_text='Full Name'>{fullName}</h1>
 					<hr className='blackHR' />
@@ -220,7 +221,7 @@ function OverviewDirect(props) {
 						</div>
 					</div>
 				</div>
-			</>
+			</div>
 		);
 	}
 }
