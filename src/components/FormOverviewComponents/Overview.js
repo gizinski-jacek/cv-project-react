@@ -54,7 +54,7 @@ function Overview(props) {
 	}
 
 	return (
-		<>
+		<div ref={props.innerRef}>
 			<div className='headerCV'>
 				<h1 placeholder_text='Full Name'>{fullName}</h1>
 				<hr className='blackHR' />
@@ -106,7 +106,7 @@ function Overview(props) {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 
