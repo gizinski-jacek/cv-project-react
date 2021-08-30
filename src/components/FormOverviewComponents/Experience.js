@@ -15,7 +15,7 @@ function Experience(props) {
 			<h3>Experience</h3>
 			{experienceItems}
 			<button className='addBtn' type='submit' onClick={handleAdd}>
-				Add section
+				Add new section
 			</button>
 		</section>
 	);
