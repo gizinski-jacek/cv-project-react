@@ -41,6 +41,7 @@ function DirectEdit(props) {
 		<div className='directEditMode' onClick={toggleAllEditsOff}>
 			<div className='overview'>
 				<OverviewDirect
+					innerRef={props.innerRef}
 					{...props.data}
 					{...props.dataHandlers}
 					editing={editing}
