@@ -5,6 +5,7 @@ import Education from './FormOverviewComponents/Education';
 
 function FormOverview(props) {
 	const {
+		innerRef,
 		data,
 		changePersonal,
 		changeFile,
@@ -19,7 +20,7 @@ function FormOverview(props) {
 	return (
 		<div className='formOverviewMode'>
 			<div className='overview'>
-				<Overview data={data} />
+				<Overview data={data} innerRef={innerRef} />
 			</div>
 			<div className='dataForm'>
 				<PersonalInformation
