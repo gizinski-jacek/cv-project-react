@@ -1,43 +1,35 @@
 function Header(props) {
-	const { mode, changeMode, saveData, wipeData } = props;
+	const { mode, changeMode, printCV, saveCV, resetCV } = props;
 	return (
 		<div className='header'>
 			<h1>CV Creator</h1>
 			<div className='mode'>
-				{mode === 'directEditBtn' ? (
-					<>
-						<button
-							id='directEditBtn'
-							className='activeMode'
-							onClick={changeMode}
-						>
-							Direct Edit
-						</button>
-						<button id='formOverviewBtn' onClick={changeMode}>
-							{'Form & Preview'}
-						</button>
-					</>
-				) : (
-					<>
-						<button id='directEditBtn' onClick={changeMode}>
-							Direct Edit
-						</button>
-						<button
-							id='formOverviewBtn'
-							className='activeMode'
-							onClick={changeMode}
-						>
-							{'Form & Preview'}
-						</button>
-					</>
-				)}
+				<>
+					<button
+						id='formOverviewBtn'
+						className={mode ? 'activeMode' : null}
+						onClick={changeMode}
+					>
+						{'Form & Overview'}
+					</button>
+					<button
+						id='directEditBtn'
+						className={mode ? null : 'activeMode'}
+						onClick={changeMode}
+					>
+						Direct Edit
+					</button>
+				</>
 			</div>
 			<div className='dataControls'>
-				<button id='saveData' onClick={saveData}>
-					Save Data
+				<button id='saveCV' onClick={saveCV}>
+					Save CV
 				</button>
-				<button id='wipeData' onClick={wipeData}>
-					Wipe Data
+				<button id='printCV' onClick={printCV}>
+					Print CV
+				</button>
+				<button id='resetCV' onClick={resetCV}>
+					Reset CV
 				</button>
 			</div>
 		</div>
