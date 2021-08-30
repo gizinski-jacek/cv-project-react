@@ -14,7 +14,7 @@ function Education(props) {
 		<section>
 			<h3>Education</h3>
 			{educationItems}
-			<button className='addBtn' type='submit' onClick={handleAdd}>
+			<button className='addBtnInForm' type='submit' onClick={handleAdd}>
 				Add new section
 			</button>
 		</section>

@@ -52,7 +52,7 @@ function ExpSection(props) {
 				/>
 			</label>
 			<button
-				className='deleteBtn'
+				className='deleteBtnInForm'
 				onClick={(e) => handleRemove(e, data.id)}
 			>
 				Delete above section

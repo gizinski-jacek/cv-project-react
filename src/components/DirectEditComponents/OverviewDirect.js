@@ -189,7 +189,7 @@ function OverviewDirect(props) {
 							<h3>
 								Experience
 								<button
-									className='addBtnFloat'
+									className='addBtnInCV'
 									id='addExp'
 									type='submit'
 									onClick={addExperience}
@@ -208,7 +208,7 @@ function OverviewDirect(props) {
 							<h3>
 								Education
 								<button
-									className='addBtnFloat'
+									className='addBtnInCV'
 									id='addEdu'
 									type='submit'
 									onClick={addEducation}
