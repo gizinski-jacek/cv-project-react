@@ -1,3 +1,11 @@
+* {
+	font-family: Helvetica;
+}
+
+button {
+	font-family: sans-serif;
+}
+
 :root {
 	font-size: 16px;
 }
@@ -33,19 +41,17 @@ body {
 .header h1 {
 	display: flex;
 	align-items: center;
-	font-size: 3rem;
-	margin: 0.25rem 1rem;
 }
 
 .mode {
 	display: flex;
 	justify-content: center;
-	padding: 0.5rem;
+	margin: 0.5rem;
 }
 
 .mode button {
-	width: 160px;
-	padding: 0.25rem 0.5rem;
+	width: 180px;
+	padding: 0.5rem;
 	font-size: 1rem;
 	font-weight: 600;
 	background-color: rgb(50, 125, 50);
@@ -71,12 +77,12 @@ body {
 .dataControls {
 	display: flex;
 	justify-content: center;
-	padding: 0.5rem;
+	margin: 0.5rem;
 }
 
 .dataControls button {
 	width: 120px;
-	padding: 0.25rem 0.5rem;
+	padding: 0.5rem;
 	font-size: 1rem;
 	font-weight: 600;
 	border: 1px solid rgb(255, 255, 255);
@@ -116,7 +122,6 @@ body {
 
 .directEditMode {
 	width: 100%;
-	padding: 2rem;
 	margin: 0 auto;
 }
 
@@ -144,26 +149,37 @@ body {
 	border-radius: 5px;
 }
 
+h1,
+h2,
+h3,
+h5 {
+	font-weight: 600;
+}
+
+h1 {
+	margin: 0.25rem 0.5rem;
+	font-size: 3rem;
+}
+
 h2 {
-	min-height: 1.5rem;
-	padding: 0.25rem 0;
+	margin: 0.25rem 0.5rem;
+	font-size: 2.5rem;
 }
 
 h3 {
 	display: flex;
 	justify-content: space-between;
-}
-
-h2,
-h3,
-p {
-	min-height: 1.5rem;
 	margin: 0.25rem;
-	line-height: 1.5rem;
+	font-size: 1.2rem;
 }
 
 h5 {
 	margin: 0.25rem;
+	font-size: 0.8rem;
+}
+
+p {
+	margin: 0.5rem 0.25rem;
 }
 
 .mainCVBody {
@@ -178,18 +194,11 @@ h5 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	height: 120px;
+	height: 130px;
 	width: 100%;
 	padding: 0.5rem;
 	background-color: rgba(0, 150, 255, 0.75);
 	box-sizing: border-box;
-}
-
-.headerCV h1 {
-	min-height: 2rem;
-	padding: 0.25rem 0;
-	margin: 0.25rem;
-	line-height: 1.5rem;
 }
 
 .leftPanelCV,
@@ -239,12 +248,11 @@ img {
 span.date {
 	position: absolute;
 	right: 0;
-	margin: 0.25rem;
-	line-height: 1.5rem;
+	margin: 0.5rem 0.25rem;
 }
 
 .grayHR {
-	width: 100%;
+	margin: 0.5rem 0;
 	border: 1px solid rgb(150, 150, 150);
 }
 
@@ -327,18 +335,12 @@ input[name='photo'] {
 .headerCV.editing h1 {
 	display: flex;
 	justify-content: space-between;
+	margin: 0.25rem 0;
 }
 
-.headerCV.editing input {
-	width: 360px;
-	padding: 0.25rem;
-	margin: 0 0.25rem;
-}
-
+.headerCV.editing input,
 .headerCV.editing input[name='title'] {
 	width: 360px;
-	padding: 0.25rem;
-	margin: 0.25rem 0.5rem;
 }
 
 .leftPanelCV.editing input,
@@ -358,16 +360,19 @@ input[name='photo'] {
 	width: 195px;
 }
 
+.rightPanelCV h3 {
+	min-height: 1.5rem;
+}
+
 .rightPanelCV .item.editing span.date {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	margin: 0;
-	line-height: 1.5rem;
 }
 
 .rightPanelCV .item.editing input {
-	height: 1.5rem;
+	padding: 2px;
 	width: 50%;
 }
 
@@ -377,24 +382,18 @@ input[name='photo'] {
 
 .addBtnInCV {
 	display: none;
-	font-weight: 600;
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 0, 0);
-	border: 1px solid rgb(0, 0, 0);
-	border-radius: 5px;
-}
-
-.addBtnInCV:hover {
-	font-weight: 600;
-	color: rgb(255, 255, 255);
-	background-color: rgba(0, 0, 0, 0.75);
-	border: 1px solid rgba(0, 0, 0, 0.75);
+	position: absolute;
+	right: 0.5rem;
 }
 
 .deleteBtnInCV {
 	position: absolute;
 	bottom: 1rem;
 	right: 0;
+}
+
+.addBtnInCV,
+.deleteBtnInCV {
 	margin: 0.25rem;
 	font-weight: 600;
 	color: rgb(255, 255, 255);
@@ -403,11 +402,9 @@ input[name='photo'] {
 	border-radius: 5px;
 }
 
+.addBtnInCV:hover,
 .deleteBtnInCV:hover {
-	font-weight: 600;
-	color: rgb(255, 255, 255);
 	background-color: rgba(0, 0, 0, 0.75);
-	border: 1px solid rgba(0, 0, 0, 0.75);
 }
 
 @media (max-width: 1350px) {
