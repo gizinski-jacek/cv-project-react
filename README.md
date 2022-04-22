@@ -52,7 +52,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Deploy
 
-An easy way to deploy this app is using [Heroku Platform](https://devcenter.heroku.com/articles/git).
+You can easily deploy this app using [Heroku Platform](https://devcenter.heroku.com/articles/git).
 
 Script for running app build after deployment to Heroku is included in package.json.\
 In the project root directory run these commands:
