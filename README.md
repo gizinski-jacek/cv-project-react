@@ -4,7 +4,7 @@ React app which allows users to create and print their own CV.
 
 ## Table of contents
 
-- [Github & Live](#github-&-live)
+- [Github & Live](#github--live)
 - [Getting Started](#getting-started)
 - [React](#react)
 - [Deploy](#deploy)
@@ -70,13 +70,13 @@ heroku open
 - Add/remove sections
 - Upload your own photo
 - Switch between two input modes
-- Save CV data in localStorage
+- Save data in localStorage
 - Reset form data
-- Print CV
+- Print the CV
 
 ## Status
 
-Project status: **_finished_**
+Project status: **_FINISHED_**
 
 ## Contact
 
@@ -85,5 +85,7 @@ Feel free to contact me at:
 ```
 jacektrg@gmail.com
 ```
+
+> jacektrg@gmail.com
 
 ###### Work on this project finished.
