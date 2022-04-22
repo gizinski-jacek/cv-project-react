@@ -18,7 +18,7 @@ Github repo can be found [here](https://github.com/gizinski-jacek/cv-project-rea
 
 This repo is live on [Heroku](https://cv-project-react-543266.herokuapp.com)
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`Create-React-App`](https://create-react-app.dev/).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Getting Started
 
