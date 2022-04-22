@@ -85,5 +85,3 @@ Feel free to contact me at:
 ```
 jacektrg@gmail.com
 ```
-
-###### Work on this project finished.
