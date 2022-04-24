@@ -14,9 +14,9 @@ React app which allows users to create and print their own CV.
 
 # Github & Live
 
-Github repo can be found [here](https://github.com/gizinski-jacek/cv-project-react)
+Github repo can be found [here](https://github.com/gizinski-jacek/cv-project-react).
 
-This repo is live on [Heroku](https://cv-project-react-543266.herokuapp.com)
+This repo is live on [Heroku](https://cv-project-react-543266.herokuapp.com).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
