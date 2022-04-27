@@ -1,18 +1,16 @@
-* {
-	font-family: Helvetica;
-}
-
-button {
-	font-family: sans-serif;
-}
-
 :root {
 	font-size: 16px;
+	font-family: Helvetica;
 }
 
 body {
 	height: 100vh;
 	margin: 0;
+}
+
+button {
+	font-family: sans-serif;
+	cursor: pointer;
 }
 
 .header,
@@ -41,6 +39,7 @@ body {
 .header h1 {
 	display: flex;
 	align-items: center;
+	white-space: nowrap;
 }
 
 .mode {
@@ -66,8 +65,16 @@ body {
 	border-radius: 5px 0 0 5px;
 }
 
+#formOverviewBtn:after {
+	content: 'Form & Overview';
+}
+
 #directEditBtn {
 	border-radius: 0 5px 5px 0;
+}
+
+#directEditBtn:after {
+	content: 'Direct Edit';
 }
 
 .activeMode {
@@ -96,9 +103,17 @@ body {
 	background-color: rgb(200, 100, 255);
 }
 
+#printCV:after {
+	content: 'Reset CV';
+}
+
 #saveCV {
 	background-color: rgb(0, 150, 255);
 	border-radius: 5px 0 0 5px;
+}
+
+#saveCV:after {
+	content: 'Save CV';
 }
 
 #saveCV:hover {
@@ -114,6 +129,10 @@ body {
 	background-color: rgb(255, 100, 100);
 }
 
+#resetCV:after {
+	content: 'Reset CV';
+}
+
 .formOverviewMode {
 	display: flex;
 	justify-content: space-evenly;
@@ -123,6 +142,12 @@ body {
 .directEditMode {
 	width: 100%;
 	margin: 0 auto;
+}
+
+.directEditMode .headerCV,
+.directEditMode .leftPanelCV,
+.directEditMode .rightPanelCV {
+	cursor: pointer;
 }
 
 .overview,
@@ -186,7 +211,6 @@ p {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	height: 100%;
 	background-color: rgb(53, 45, 45);
 }
 
@@ -261,7 +285,7 @@ span.date {
 	border: 1px solid rgb(75, 75, 75);
 }
 
-:empty:not(:focus)::before {
+.main :empty:not(:focus)::before {
 	content: attr(placeholder_text);
 	color: rgba(0, 0, 0, 0.5);
 }
@@ -407,16 +431,58 @@ input[name='photo'] {
 	background-color: rgba(0, 0, 0, 0.75);
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1360px) {
 	.formOverviewMode {
 		flex-direction: column;
 	}
 
 	.overview {
+		margin: 1rem;
 		position: initial;
 	}
 
 	.dataForm {
+		margin: 1rem;
 		width: 800px;
+	}
+}
+
+@media (max-width: 1100px) {
+	.header h1 {
+		font-size: 2rem;
+	}
+
+	.dataControls button {
+		width: 80px;
+	}
+
+	#printCV:after {
+		content: 'Print';
+	}
+
+	#saveCV:after {
+		content: 'Save';
+	}
+
+	#resetCV:after {
+		content: 'Reset';
+	}
+}
+
+@media (max-width: 880px) {
+	.mode button {
+		width: 80px;
+	}
+
+	#formOverviewBtn:after {
+		content: 'Form';
+	}
+
+	#directEditBtn {
+		border-radius: 0 5px 5px 0;
+	}
+
+	#directEditBtn:after {
+		content: 'Direct';
 	}
 }

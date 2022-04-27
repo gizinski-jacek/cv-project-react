@@ -9,28 +9,18 @@ function Header(props) {
 						id='formOverviewBtn'
 						className={mode ? 'activeMode' : null}
 						onClick={changeMode}
-					>
-						{'Form & Overview'}
-					</button>
+					></button>
 					<button
 						id='directEditBtn'
 						className={mode ? null : 'activeMode'}
 						onClick={changeMode}
-					>
-						Direct Edit
-					</button>
+					></button>
 				</>
 			</div>
 			<div className='dataControls'>
-				<button id='saveCV' onClick={saveCV}>
-					Save CV
-				</button>
-				<button id='printCV' onClick={printCV}>
-					Print CV
-				</button>
-				<button id='resetCV' onClick={resetCV}>
-					Reset CV
-				</button>
+				<button id='saveCV' onClick={saveCV}></button>
+				<button id='printCV' onClick={printCV}></button>
+				<button id='resetCV' onClick={resetCV}></button>
 			</div>
 		</div>
 	);

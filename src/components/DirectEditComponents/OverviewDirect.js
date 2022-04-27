@@ -16,6 +16,8 @@ function OverviewDirect(props) {
 		changeEducation,
 		addEducation,
 		removeEducation,
+		editing,
+		toggle,
 	} = props;
 
 	function showButton(e) {
@@ -37,10 +39,7 @@ function OverviewDirect(props) {
 
 	let expStartEndDate;
 	if (experience.startDate || education.endDate) {
-		expStartEndDate = experience.startDate.startDate(
-			' - ',
-			education.endDate
-		);
+		expStartEndDate = experience.startDate.startDate(' - ', education.endDate);
 	}
 
 	let eduStartEndDate;
@@ -49,7 +48,7 @@ function OverviewDirect(props) {
 	}
 
 	const experienceItems = experience.map((item) => {
-		if (props.editing.experience) {
+		if (editing.experience) {
 			return (
 				<ExperienceEdit
 					key={item.id}
@@ -61,15 +60,8 @@ function OverviewDirect(props) {
 			);
 		} else {
 			return (
-				<div
-					key={item.id}
-					className='item'
-					onClick={(e) => props.toggle(e, item.id)}
-				>
-					<span
-						className='date'
-						placeholder_text='Start Date - End Date'
-					>
+				<div key={item.id} className='item' onClick={(e) => toggle(e, item.id)}>
+					<span className='date' placeholder_text='Start Date - End Date'>
 						{expStartEndDate}
 					</span>
 					<p placeholder_text='Company'>{item.company}</p>
@@ -82,7 +74,7 @@ function OverviewDirect(props) {
 	});
 
 	const educationItems = education.map((item) => {
-		if (props.editing.education) {
+		if (editing.education) {
 			return (
 				<EducationEdit
 					key={item.id}
@@ -94,15 +86,8 @@ function OverviewDirect(props) {
 			);
 		} else {
 			return (
-				<div
-					key={item.id}
-					className='item'
-					onClick={(e) => props.toggle(e, item.id)}
-				>
-					<span
-						className='date'
-						placeholder_text='Start Date - End Date'
-					>
+				<div key={item.id} className='item' onClick={(e) => toggle(e, item.id)}>
+					<span className='date' placeholder_text='Start Date - End Date'>
 						{eduStartEndDate}
 					</span>
 					<p placeholder_text='University'>{item.university}</p>
@@ -119,7 +104,7 @@ function OverviewDirect(props) {
 		}
 	});
 
-	if (props.editing.personal) {
+	if (editing.personal) {
 		return (
 			<PersonalEdit
 				personal={personal}
@@ -132,25 +117,20 @@ function OverviewDirect(props) {
 	} else {
 		return (
 			<div ref={innerRef}>
-				<div className='headerCV' onClick={(e) => props.toggle(e)}>
+				<div className='headerCV' onClick={(e) => toggle(e)}>
 					<h1 placeholder_text='Full Name'>{fullName}</h1>
 					<hr className='blackHR' />
 					<h2 placeholder_text='Title'>{personal.title}</h2>
 				</div>
 				<div className='mainCVBody'>
-					<div
-						className='leftPanelCV'
-						onClick={(e) => props.toggle(e)}
-					>
+					<div className='leftPanelCV' onClick={(e) => toggle(e)}>
 						<div>
 							<img src={personal.photo} alt='' />
 						</div>
 						<div>
 							<h3>Date of Birth</h3>
 							<hr className='blackHR' />
-							<p placeholder_text='YYYY-MM-DD'>
-								{personal.birth}
-							</p>
+							<p placeholder_text='YYYY-MM-DD'>{personal.birth}</p>
 						</div>
 						<div>
 							<h3>Address</h3>
@@ -160,9 +140,7 @@ function OverviewDirect(props) {
 						<div>
 							<h3>Phone Number</h3>
 							<hr className='blackHR' />
-							<p placeholder_text='Phone Number'>
-								{personal.phone}
-							</p>
+							<p placeholder_text='Phone Number'>{personal.phone}</p>
 						</div>
 						<div>
 							<h3>Email</h3>
@@ -170,16 +148,11 @@ function OverviewDirect(props) {
 							<p placeholder_text='Email'>{personal.email}</p>
 						</div>
 					</div>
-					<div
-						className='rightPanelCV'
-						onClick={(e) => props.toggle(e)}
-					>
+					<div className='rightPanelCV' onClick={(e) => toggle(e)}>
 						<div className='description'>
 							<h3>Description</h3>
 							<hr className='blackHR' />
-							<p placeholder_text='Your description'>
-								{personal.description}
-							</p>
+							<p placeholder_text='Your description'>{personal.description}</p>
 						</div>
 						<div
 							className='experience'
