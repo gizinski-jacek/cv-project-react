@@ -434,15 +434,14 @@ input[name='photo'] {
 @media (max-width: 1360px) {
 	.formOverviewMode {
 		flex-direction: column;
+		align-items: center;
 	}
 
 	.overview {
-		margin: 1rem;
 		position: initial;
 	}
 
 	.dataForm {
-		margin: 1rem;
 		width: 800px;
 	}
 }
