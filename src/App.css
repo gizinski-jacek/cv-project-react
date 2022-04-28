@@ -3,6 +3,11 @@
 	font-family: Helvetica;
 }
 
+#root {
+	display: flex;
+	flex-direction: column;
+}
+
 body {
 	height: 100vh;
 	margin: 0;
@@ -13,8 +18,7 @@ button {
 	cursor: pointer;
 }
 
-.header,
-.footer {
+.header {
 	padding: 0.5rem;
 	color: rgb(255, 255, 255);
 	background-color: rgb(50, 50, 50);
@@ -26,8 +30,7 @@ button {
 	align-items: center;
 }
 
-.main,
-.footer {
+.main {
 	display: flex;
 	justify-content: center;
 }
@@ -429,6 +432,31 @@ input[name='photo'] {
 .addBtnInCV:hover,
 .deleteBtnInCV:hover {
 	background-color: rgba(0, 0, 0, 0.75);
+}
+
+.footer {
+	width: 100%;
+	text-align: center;
+	background-color: rgb(0, 150, 255);
+}
+
+.footer a {
+	font-weight: 600;
+	color: rgb(255, 255, 255);
+	padding: 4px;
+	float: right;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+}
+
+.footer svg {
+	margin-left: 8px;
+	box-sizing: content-box;
+	border-radius: 50%;
+	padding: 1px;
+	background-color: rgb(255, 255, 255);
+	fill: rgb(0, 0, 0);
 }
 
 @media (max-width: 1360px) {
