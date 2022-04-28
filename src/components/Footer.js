@@ -1,7 +1,7 @@
 const Footer = () => {
 	return (
 		<footer className='footer'>
-			<a href='https://github.com/gizinski-jacek/odinbook-client'>
+			<a href='https://github.com/gizinski-jacek/cv-project-react'>
 				Gizinski Jacek
 				<svg
 					viewBox='0 0 16 16'
