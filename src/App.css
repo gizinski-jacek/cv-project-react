@@ -19,30 +19,25 @@ button {
 }
 
 .header {
-	padding: 0.5rem;
-	color: rgb(255, 255, 255);
-	background-color: rgb(50, 50, 50);
-}
-
-.header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-}
-
-.main {
-	display: flex;
-	justify-content: center;
-}
-
-.main {
-	background-color: rgb(175, 175, 175);
+	padding: 0.5rem;
+	color: rgb(255, 255, 255);
+	background-color: rgb(50, 50, 50);
 }
 
 .header h1 {
 	display: flex;
 	align-items: center;
 	white-space: nowrap;
+}
+
+.main {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	background-color: rgb(175, 175, 175);
 }
 
 .mode {
