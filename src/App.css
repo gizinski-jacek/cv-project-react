@@ -4,13 +4,9 @@
 }
 
 #root {
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
-}
-
-body {
-	height: 100vh;
-	margin: 0;
 }
 
 button {
