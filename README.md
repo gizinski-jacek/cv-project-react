@@ -16,7 +16,7 @@ React app which allows users to create and print their own CV.
 
 Github repo can be found [here](https://github.com/gizinski-jacek/cv-project-react).
 
-Live demo can be found on [Heroku](https://cv-creator-541276.herokuapp.com).
+Live demo can be found on [Netlify](https://cv-creator-c9c2ea.netlify.app).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
