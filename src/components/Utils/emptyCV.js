@@ -11,7 +11,7 @@ const emptyCV = {
 		address: '',
 		phone: '',
 		email: '',
-		description: '',
+		profile: '',
 	},
 	experience: [
 		{
@@ -26,12 +26,12 @@ const emptyCV = {
 	education: [
 		{
 			id: nanoid(),
-			university: '',
-			uniCity: '',
+			school: '',
+			schoolCity: '',
 			degree: '',
 			subject: '',
-			uniStart: '',
-			uniEnd: '',
+			eduStart: '',
+			eduEnd: '',
 		},
 	],
 };
