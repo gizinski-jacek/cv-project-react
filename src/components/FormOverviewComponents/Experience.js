@@ -1,8 +1,13 @@
 import ExpSection from './ExpSection';
 
-function Experience(props) {
-	const { data, handleChange, handleAdd, handleRemove } = props;
-	const experienceItems = data.map((item) => (
+function Experience({
+	data,
+	handleChange,
+	handleAdd,
+	handleRemove,
+	removeSection,
+}) {
+	const experienceItems = data?.map((item) => (
 		<ExpSection
 			key={item.id}
 			data={item}
@@ -12,10 +17,19 @@ function Experience(props) {
 	));
 	return (
 		<section>
-			<h3>Experience</h3>
+			<div>
+				<h3>Experience</h3>
+				<button
+					type='button'
+					className='removeSectionBtnInForm'
+					onClick={() => removeSection('experience')}
+				>
+					Remove section
+				</button>
+			</div>
 			{experienceItems}
-			<button className='addBtnInForm' type='submit' onClick={handleAdd}>
-				Add new section
+			<button className='addEntryBtnInForm' type='button' onClick={handleAdd}>
+				Add new entry
 			</button>
 		</section>
 	);
