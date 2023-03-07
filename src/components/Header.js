@@ -1,5 +1,4 @@
-function Header(props) {
-	const { mode, changeMode, printCV, saveCV, resetCV } = props;
+function Header({ mode, changeMode, printCV, saveCV, resetCV }) {
 	return (
 		<div className='header'>
 			<h1>CV Creator</h1>
