@@ -1,5 +1,4 @@
-function ExperienceEdit(props) {
-	const { item, experience, handleChange, handleRemove } = props;
+function ExperienceEdit({ item, handleChange, handleRemove }) {
 	return (
 		<div className='item editing'>
 			<span className='date'>
@@ -7,18 +6,18 @@ function ExperienceEdit(props) {
 					type='date'
 					name='workStart'
 					placeholder='Started'
-					min='1950-01-01'
-					max='2050-12-31'
-					value={experience.workStart}
+					min={`${new Date().getFullYear() - 100}-01-01`}
+					max={`${new Date().getFullYear() + 100}-12-31`}
+					value={item.workStart}
 					onChange={(e) => handleChange(e, item.id)}
 				/>
 				<input
 					type='date'
 					name='workEnd'
 					placeholder='Ended'
-					min='1950-01-01'
-					max='2050-12-31'
-					value={experience.workEnd}
+					min={`${new Date().getFullYear() - 100}-01-01`}
+					max={`${new Date().getFullYear() + 100}-12-31`}
+					value={item.workEnd}
 					onChange={(e) => handleChange(e, item.id)}
 				/>
 			</span>
@@ -26,29 +25,29 @@ function ExperienceEdit(props) {
 				type='text'
 				name='company'
 				placeholder='Company'
-				value={experience.company}
+				value={item.company}
 				onChange={(e) => handleChange(e, item.id)}
 			/>
 			<input
 				type='text'
 				name='city'
 				placeholder='City'
-				value={experience.city}
+				value={item.city}
 				onChange={(e) => handleChange(e, item.id)}
 			/>
 			<input
 				type='text'
 				name='position'
 				placeholder='Position'
-				value={experience.position}
+				value={item.position}
 				onChange={(e) => handleChange(e, item.id)}
 			/>
 			<button
-				className='deleteBtnInCV'
-				type='submit'
-				onClick={(e) => handleRemove(e, item.id)}
+				className='removeEntryBtnInCV'
+				type='button'
+				onClick={() => handleRemove(item.id)}
 			>
-				Remove section
+				Remove entry
 			</button>
 			<hr className='grayHR' />
 		</div>

@@ -1,61 +1,60 @@
-function EducationEdit(props) {
-	const { item, education, handleChange, handleRemove } = props;
+function EducationEdit({ item, handleChange, handleRemove }) {
 	return (
 		<div className='item editing'>
 			<span className='date'>
 				<input
 					type='date'
-					name='uniStart'
+					name='eduStart'
 					placeholder='Started'
-					min='1950-01-01'
-					max='2050-12-31'
-					value={education.uniStart}
+					min={`${new Date().getFullYear() - 100}-01-01`}
+					max={`${new Date().getFullYear() + 100}-12-31`}
+					value={item.eduStart}
 					onChange={(e) => handleChange(e, item.id)}
 				/>
 				<input
 					type='date'
-					name='uniEnd'
+					name='eduEnd'
 					placeholder='Ended'
-					min='1950-01-01'
-					max='2050-12-31'
-					value={education.uniEnd}
+					min={`${new Date().getFullYear() - 100}-01-01`}
+					max={`${new Date().getFullYear() + 100}-12-31`}
+					value={item.eduEnd}
 					onChange={(e) => handleChange(e, item.id)}
 				/>
 			</span>
 			<input
 				type='text'
-				name='university'
-				placeholder='University'
-				value={education.university}
+				name='school'
+				placeholder='School'
+				value={item.school}
 				onChange={(e) => handleChange(e, item.id)}
 			/>
 			<input
 				type='text'
-				name='uniCity'
+				name='schoolCity'
 				placeholder='City'
-				value={education.uniCity}
+				value={item.schoolCity}
 				onChange={(e) => handleChange(e, item.id)}
 			/>
 			<input
 				type='text'
 				name='degree'
 				placeholder='Degree'
-				value={education.degree}
+				value={item.degree}
 				onChange={(e) => handleChange(e, item.id)}
 			/>
 			<input
 				type='text'
 				name='subject'
 				placeholder='Subject'
-				value={education.subject}
+				value={item.subject}
 				onChange={(e) => handleChange(e, item.id)}
 			/>
 			<button
-				className='deleteBtnInCV'
-				type='submit'
-				onClick={(e) => handleRemove(e, item.id)}
+				className='removeEntryBtnInCV'
+				type='button'
+				onClick={() => handleRemove(item.id)}
 			>
-				Remove section
+				Remove entry
 			</button>
 			<hr className='grayHR' />
 		</div>
