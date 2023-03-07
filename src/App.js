@@ -9,11 +9,15 @@ import { nanoid } from 'nanoid';
 import { useReactToPrint } from 'react-to-print';
 
 function App() {
-	const localData = JSON.parse(localStorage.getItem('localData'));
 	const [formMode, setFormMode] = useState(true);
-	const [currentData, setCurrentData] = useState(
-		localData ? localData : emptyCV
-	);
+	const [currentData, setCurrentData] = useState(null);
+
+	useEffect(() => {
+		const data = JSON.parse(localStorage.getItem('localData'));
+		const mode = JSON.parse(localStorage.getItem('preferredMode'));
+		setCurrentData(data || emptyCV);
+		setFormMode(mode === true ? true : false);
+	}, []);
 
 	const dataHandlers = {
 		changePersonal(e) {
@@ -59,8 +63,7 @@ function App() {
 			});
 		},
 
-		addExperience(e) {
-			e.preventDefault();
+		addExperience() {
 			setCurrentData((prevState) => ({
 				...prevState,
 				experience: [
@@ -77,14 +80,13 @@ function App() {
 			}));
 		},
 
-		removeExperience(e, id) {
-			e.preventDefault();
-			setCurrentData((prevState) => ({
-				...prevState,
-				experience: prevState.experience.filter(
-					(item) => item.id !== id
-				),
-			}));
+		removeExperienceEntry(id) {
+			if (window.confirm('Deleting entry. Are you sure?')) {
+				setCurrentData((prevState) => ({
+					...prevState,
+					experience: prevState.experience.filter((item) => item.id !== id),
+				}));
+			}
 		},
 
 		changeEducation(e, id) {
@@ -100,31 +102,63 @@ function App() {
 			});
 		},
 
-		addEducation(e) {
-			e.preventDefault();
+		addEducation() {
 			setCurrentData((prevState) => ({
 				...prevState,
 				education: [
 					...prevState.education,
 					{
 						id: nanoid(),
-						university: '',
-						uniCity: '',
+						school: '',
+						schoolCity: '',
 						degree: '',
 						subject: '',
-						uniStart: '',
-						uniEnd: '',
+						eduStart: '',
+						eduEnd: '',
 					},
 				],
 			}));
 		},
 
-		removeEducation(e, id) {
-			e.preventDefault();
-			setCurrentData((prevState) => ({
-				...prevState,
-				education: prevState.education.filter((item) => item.id !== id),
-			}));
+		removeEducationEntry(id) {
+			if (window.confirm('Deleting entry. Are you sure?')) {
+				setCurrentData((prevState) => ({
+					...prevState,
+					education: prevState.education.filter((item) => item.id !== id),
+				}));
+			}
+		},
+
+		addSection(name) {
+			const newState = { ...currentData };
+			newState[name] = emptyCV[name];
+			setCurrentData(newState);
+		},
+
+		removeSection(name) {
+			if (window.confirm(`Deleting entire ${name} section. Are you sure?`)) {
+				const newState = { ...currentData };
+				delete newState[name];
+				setCurrentData(newState);
+			}
+		},
+
+		addPersonalSection(name) {
+			const newState = { ...currentData };
+			newState.personal[name] = emptyCV.personal[name];
+			setCurrentData(newState);
+		},
+
+		removePersonalSection(name) {
+			if (
+				window.confirm(
+					`Deleting entire ${name} from personal info section. Are you sure?`
+				)
+			) {
+				const newState = { ...currentData };
+				delete newState.personal[name];
+				setCurrentData(newState);
+			}
 		},
 	};
 
@@ -144,7 +178,7 @@ function App() {
 		},
 
 		resetCV() {
-			if (window.confirm('This will reset all CV data. Are you sure?')) {
+			if (window.confirm('This will reset all your CV data. Are you sure?')) {
 				localStorage.clear();
 				setCurrentData(emptyCV);
 			}
@@ -152,29 +186,35 @@ function App() {
 	};
 
 	useEffect(() => {
+		localStorage.setItem('preferredMode', JSON.stringify(formMode));
+	}, [formMode]);
+
+	useEffect(() => {
 		localStorage.setItem('localData', JSON.stringify(currentData));
 	}, [currentData]);
 
 	return (
-		<>
-			<Header mode={formMode} {...headerControls} printCV={printCV} />
-			<div className='main'>
-				{formMode ? (
-					<FormOverview
-						innerRef={componentRef}
-						data={currentData}
-						{...dataHandlers}
-					/>
-				) : (
-					<DirectEdit
-						innerRef={componentRef}
-						data={currentData}
-						dataHandlers={dataHandlers}
-					/>
-				)}
-			</div>
-			<Footer />
-		</>
+		currentData && (
+			<>
+				<Header mode={formMode} {...headerControls} printCV={printCV} />
+				<div className='main'>
+					{formMode ? (
+						<FormOverview
+							innerRef={componentRef}
+							data={currentData}
+							{...dataHandlers}
+						/>
+					) : (
+						<DirectEdit
+							innerRef={componentRef}
+							data={currentData}
+							dataHandlers={dataHandlers}
+						/>
+					)}
+				</div>
+				<Footer />
+			</>
+		)
 	);
 }
 
