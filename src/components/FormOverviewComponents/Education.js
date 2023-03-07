@@ -1,8 +1,13 @@
 import EduSection from './EduSection';
 
-function Education(props) {
-	const { data, handleChange, handleAdd, handleRemove } = props;
-	const educationItems = data.map((item) => (
+function Education({
+	data,
+	handleChange,
+	handleAdd,
+	handleRemove,
+	removeSection,
+}) {
+	const educationItems = data?.map((item) => (
 		<EduSection
 			key={item.id}
 			data={item}
@@ -12,10 +17,19 @@ function Education(props) {
 	));
 	return (
 		<section>
-			<h3>Education</h3>
+			<div>
+				<h3>Education</h3>
+				<button
+					type='button'
+					className='removeSectionBtnInForm'
+					onClick={() => removeSection('education')}
+				>
+					Remove section
+				</button>
+			</div>
 			{educationItems}
-			<button className='addBtnInForm' type='submit' onClick={handleAdd}>
-				Add new section
+			<button className='addEntryBtnInForm' type='button' onClick={handleAdd}>
+				Add new entry
 			</button>
 		</section>
 	);
