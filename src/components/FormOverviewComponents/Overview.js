@@ -1,18 +1,23 @@
-function Overview(props) {
-	const { personal, experience, education } = props.data;
-
-	const expDisplay = experience.map((item) => {
-		let expStartEndDate;
-		if (experience.startDate || education.endDate) {
-			expStartEndDate = experience.startDate.startDate(
-				' - ',
-				education.endDate
-			);
+function Overview({ personal, experience, education, innerRef }) {
+	function formatName(first, last) {
+		if (first || last) {
+			return first.concat(' ', last);
 		}
+	}
+
+	function formatDate(start, end) {
+		if (start || end) {
+			return new Date(start)
+				.toLocaleDateString()
+				.concat(' - ', end ? new Date(end).toLocaleDateString() : 'Present');
+		}
+	}
+
+	const expDisplay = experience?.map((item) => {
 		return (
 			<div key={item.id} className='item'>
 				<span className='date' placeholder_text='Start Date - End Date'>
-					{expStartEndDate}
+					{formatDate(item.workStart, item.workEnd)}
 				</span>
 				<p placeholder_text='Company'>{item.company}</p>
 				<p placeholder_text='City'>{item.city}</p>
@@ -22,21 +27,14 @@ function Overview(props) {
 		);
 	});
 
-	const eduDisplay = education.map((item) => {
-		let eduStartEndDate;
-		if (education.startDate || education.endDate) {
-			eduStartEndDate = education.startDate.concat(
-				' - ',
-				education.endDate
-			);
-		}
+	const eduDisplay = education?.map((item) => {
 		return (
 			<div key={item.id} className='item'>
 				<span className='date' placeholder_text='Start Date - End Date'>
-					{eduStartEndDate}
+					{formatDate(item.eduStart, item.eduEnd)}
 				</span>
-				<p placeholder_text='University'>{item.university}</p>
-				<p placeholder_text='City'>{item.uniCity}</p>
+				<p placeholder_text='School'>{item.schoolversity}</p>
+				<p placeholder_text='City'>{item.schoolCity}</p>
 				<p placeholder_text='Degree:'>
 					{item.degree ? 'Degree: ' + item.degree : null}
 				</p>
@@ -48,19 +46,16 @@ function Overview(props) {
 		);
 	});
 
-	let fullName;
-	if (personal.firstName || personal.lastName) {
-		fullName = personal.firstName.concat(' ', personal.lastName);
-	}
-
 	return (
-		<div ref={props.innerRef}>
+		<div ref={innerRef} className='mainCV'>
 			<div className='headerCV'>
-				<h1 placeholder_text='Full Name'>{fullName}</h1>
+				<h1 placeholder_text='Full Name'>
+					{formatName(personal.firstName, personal.lastName)}
+				</h1>
 				<hr className='blackHR' />
 				<h2 placeholder_text='Title'>{personal.title}</h2>
 			</div>
-			<div className='mainCVBody'>
+			<div className='cvBody'>
 				<div className='leftPanelCV'>
 					<div>
 						<img src={personal.photo} alt='' />
@@ -68,7 +63,9 @@ function Overview(props) {
 					<div>
 						<h3>Date of Birth</h3>
 						<hr className='blackHR' />
-						<p placeholder_text='YYYY-MM-DD'>{personal.birth}</p>
+						<p placeholder_text='Date'>
+							{personal.birth && new Date(personal.birth).toLocaleDateString()}
+						</p>
 					</div>
 					<div>
 						<h3>Address</h3>
@@ -87,23 +84,25 @@ function Overview(props) {
 					</div>
 				</div>
 				<div className='rightPanelCV'>
-					<div className='description'>
-						<h3>Description</h3>
+					<div className='profile'>
+						<h3>Profile</h3>
 						<hr className='blackHR' />
-						<p placeholder_text='Your description'>
-							{personal.description}
-						</p>
+						<p placeholder_text='Your profile'>{personal.profile}</p>
 					</div>
-					<div className='experience'>
-						<h3>Experience</h3>
-						<hr className='blackHR' />
-						{expDisplay}
-					</div>
-					<div className='education'>
-						<h3>Education</h3>
-						<hr className='blackHR' />
-						{eduDisplay}
-					</div>
+					{experience && (
+						<div className='experience'>
+							<h3>Experience</h3>
+							<hr className='blackHR' />
+							{expDisplay}
+						</div>
+					)}
+					{education && (
+						<div className='education'>
+							<h3>Education</h3>
+							<hr className='blackHR' />
+							{eduDisplay}
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
