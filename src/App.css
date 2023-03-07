@@ -3,15 +3,31 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 #root {
-	height: 100vh;
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 }
 
 button {
+	display: block;
 	font-family: sans-serif;
 	cursor: pointer;
+	transition: 0.25s ease-in-out;
+	text-transform: capitalize;
+	text-align: center;
+}
+
+button:hover {
+	filter: brightness(110%);
+}
+
+button:active {
+	filter: brightness(125%);
 }
 
 .header {
@@ -21,6 +37,7 @@ button {
 	padding: 0.5rem;
 	color: rgb(255, 255, 255);
 	background-color: rgb(50, 50, 50);
+	user-select: none;
 }
 
 .header h1 {
@@ -34,6 +51,7 @@ button {
 	display: flex;
 	justify-content: center;
 	background-color: rgb(175, 175, 175);
+	position: relative;
 }
 
 .mode {
@@ -49,10 +67,6 @@ button {
 	font-weight: 600;
 	background-color: rgb(50, 125, 50);
 	border: 1px solid rgb(255, 255, 255);
-}
-
-.mode button:hover {
-	background-color: rgb(50, 150, 50);
 }
 
 #formOverviewBtn {
@@ -71,8 +85,14 @@ button {
 	content: 'Direct Edit';
 }
 
-.activeMode {
-	background-color: rgb(50, 200, 75) !important;
+button.activeMode {
+	background-color: rgb(50, 200, 75);
+}
+
+button.activeMode:hover,
+button.activeMode:active {
+	filter: unset;
+	cursor: initial;
 }
 
 .dataControls {
@@ -90,11 +110,7 @@ button {
 }
 
 #printCV {
-	background-color: rgb(175, 75, 255);
-}
-
-#printCV:hover {
-	background-color: rgb(200, 100, 255);
+	background-color: rgb(150, 0, 225);
 }
 
 #printCV:after {
@@ -102,7 +118,7 @@ button {
 }
 
 #saveCV {
-	background-color: rgb(0, 150, 255);
+	background-color: rgb(0, 125, 225);
 	border-radius: 5px 0 0 5px;
 }
 
@@ -110,17 +126,9 @@ button {
 	content: 'Save CV';
 }
 
-#saveCV:hover {
-	background-color: rgb(0, 175, 255);
-}
-
 #resetCV {
-	background-color: rgb(255, 75, 75);
+	background-color: rgb(200, 25, 25);
 	border-radius: 0 5px 5px 0;
-}
-
-#resetCV:hover {
-	background-color: rgb(255, 100, 100);
 }
 
 #resetCV:after {
@@ -133,6 +141,11 @@ button {
 	width: 100%;
 }
 
+.formOverviewMode input,
+.formOverviewMode textarea {
+	width: 100%;
+}
+
 .directEditMode {
 	width: 100%;
 	margin: 0 auto;
@@ -140,8 +153,16 @@ button {
 
 .directEditMode .headerCV,
 .directEditMode .leftPanelCV,
-.directEditMode .rightPanelCV {
+.directEditMode .profile,
+.item {
 	cursor: pointer;
+}
+
+.directEditMode .headerCV.editing,
+.directEditMode .leftPanelCV.editing,
+.directEditMode .profile.editing,
+.item.editing {
+	cursor: initial;
 }
 
 .overview,
@@ -150,22 +171,57 @@ button {
 	flex-direction: column;
 	align-items: center;
 	margin: 2rem auto;
-	box-sizing: border-box;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.75);
 }
 
 .overview {
-	position: sticky;
-	top: 1rem;
 	height: fit-content;
 	width: 800px;
+	background-color: rgb(255, 255, 255);
+}
+
+.overview-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -10;
+	opacity: 0;
+	transition: 0.25s ease-in-out;
+	background-color: rgba(0, 0, 0, 0.5);
+	overflow: scroll;
+}
+
+.overview-wrapper.show {
+	z-index: 10;
+	opacity: 1;
 }
 
 .dataForm {
-	width: 500px;
+	min-width: 500px;
 	padding: 0.5rem 2rem;
 	background-color: rgb(225, 200, 175);
 	border-radius: 5px;
+	position: relative;
+}
+
+.previewCVBtn {
+	position: absolute;
+	top: 0.75rem;
+	right: 2.25rem;
+	padding: 0.25rem;
+	font-size: 1rem;
+	font-weight: 600;
+	background-color: rgb(225, 225, 0);
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 5px;
+	transition: none;
+}
+
+.previewCVBtn.fixed {
+	position: fixed;
+	right: 1rem;
 }
 
 h1,
@@ -201,11 +257,19 @@ p {
 	margin: 0.5rem 0.25rem;
 }
 
-.mainCVBody {
+.mainCV {
+	print-color-adjust: exact;
+	display: flex;
+	flex-direction: column;
+	min-height: 1000px;
+	width: 100%;
+}
+
+.cvBody {
+	flex: 1;
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	background-color: rgb(53, 45, 45);
 }
 
 .headerCV {
@@ -215,18 +279,26 @@ p {
 	height: 130px;
 	width: 100%;
 	padding: 0.5rem;
-	background-color: rgba(0, 150, 255, 0.75);
-	box-sizing: border-box;
+	background-color: rgb(0, 160, 230);
+}
+
+.formOverviewMode .removePersonalSectionBtnInCV {
+	margin: 0.25rem;
+}
+
+.headerCV .removePersonalSectionBtnInCV {
+	margin-left: 3rem;
 }
 
 .leftPanelCV,
 .rightPanelCV {
-	min-height: 800px;
-	box-sizing: border-box;
+	position: relative;
+	padding: 0.5rem;
 }
 
 .leftPanelCV {
-	width: 220px;
+	width: 240px;
+	height: fit-content;
 	background-color: rgb(225, 225, 225);
 }
 
@@ -234,15 +306,18 @@ p {
 	padding: 0.5rem;
 }
 
+.photoBtn {
+	margin: auto;
+}
+
 .rightPanelCV {
-	width: 580px;
-	padding: 0.5rem;
-	background-color: rgb(255, 255, 255);
+	flex: 1;
 }
 
 .experience,
 .education {
 	margin: 1rem 0;
+	position: relative;
 }
 
 .experience p,
@@ -250,7 +325,7 @@ p {
 	width: 50%;
 }
 
-.description,
+.profile,
 .item {
 	display: flex;
 	flex-direction: column;
@@ -259,8 +334,10 @@ p {
 }
 
 img {
-	height: 280px;
-	width: 200px;
+	display: block;
+	height: auto;
+	width: 160px;
+	margin: auto;
 }
 
 span.date {
@@ -292,7 +369,35 @@ form {
 
 section {
 	width: 100%;
-	margin-top: 0.5rem;
+	margin-top: 1rem;
+}
+
+section > div {
+	display: flex;
+	justify-content: space-between;
+}
+
+.removeSectionBtnInForm {
+	padding: 0.25rem;
+	margin: 0 0.25rem;
+	font-size: 1rem;
+	font-weight: 600;
+	color: rgb(255, 255, 255);
+	background-color: rgb(175, 0, 0);
+	border: none;
+	border-radius: 5px;
+}
+
+.addSectionInForm {
+	padding: 0.25rem;
+	margin: 0.25rem 3rem;
+	font-size: 1rem;
+	font-weight: 600;
+	color: rgb(255, 255, 255);
+	background-color: rgb(25, 175, 0);
+	border: none;
+	border-radius: 5px;
+	width: 75%;
 }
 
 label {
@@ -301,19 +406,19 @@ label {
 }
 
 input,
-textarea {
-	width: 100%;
+textarea,
+label p,
+span[name='photo'] {
 	padding: 0.25rem;
 	margin: 0.25rem;
-	box-sizing: border-box;
 }
 
 textarea {
 	resize: none;
 }
 
-.deleteBtnInForm,
-.addBtnInForm {
+.removeEntryBtnInForm,
+.addEntryBtnInForm {
 	padding: 0.25rem;
 	margin: 0.25rem 3rem;
 	font-size: 1rem;
@@ -322,28 +427,35 @@ textarea {
 	background-color: rgb(0, 0, 0);
 	border: none;
 	border-radius: 5px;
-	box-sizing: border-box;
 }
 
-.deleteBtnInForm {
+.removeEntryBtnInForm {
 	margin-top: 0.75rem;
 }
 
-.deleteBtnInForm:hover,
-.addBtnInForm:hover {
-	background-color: rgba(0, 0, 0, 0.75);
+.removeEntryBtnInForm:hover,
+.addEntryBtnInForm:hover {
+	background-color: rgb(35, 35, 35);
+}
+
+.removeEntryBtnInForm:active,
+.addEntryBtnInForm:active {
+	background-color: rgb(50, 50, 50);
 }
 
 input,
 textarea,
 label p,
 span[name='photo'] {
-	width: 100%;
-	margin: 0.25rem;
-	padding: 0.25rem;
 	font-size: 1rem;
 	background-color: rgb(255, 255, 255);
 	border: 1px solid rgb(125, 125, 125);
+}
+
+span[name='photo'] {
+	color: rgb(100, 100, 100);
+	width: 100%;
+	padding: 0.5rem 0.25rem;
 }
 
 input[name='photo'] {
@@ -367,7 +479,7 @@ input[name='photo'] {
 	width: 195px;
 }
 
-.leftPanelCV.editing button {
+.leftPanelCV.editing .photoBtn {
 	padding: 0;
 	background-color: rgba(255, 255, 255, 0);
 	border: none;
@@ -394,35 +506,73 @@ input[name='photo'] {
 	width: 50%;
 }
 
-.description.editing textarea {
-	width: 550px;
-}
-
-.addBtnInCV {
+#addExpSectionBtnInCV,
+#addEduSectionBtnInCV {
 	display: none;
-	position: absolute;
-	right: 0.5rem;
+	position: static;
+	margin: 1rem auto;
+	right: 1rem;
+	padding: 0.25rem;
+	font-weight: 600;
+	color: rgb(255, 255, 255);
+	background-color: rgb(25, 175, 0);
+	border: none;
+	border-radius: 5px;
 }
 
-.deleteBtnInCV {
+.addPersonalSectionBtnInCV {
+	padding: 0.25rem;
+	margin: 0.25rem auto;
+	font-weight: 600;
+	color: rgb(255, 255, 255);
+	background-color: rgb(25, 175, 0);
+	border: 2px solid black;
+	border-radius: 5px;
+}
+
+#expSectionBtns,
+#eduSectionBtns {
+	display: none;
+	align-items: center;
+	position: absolute;
+	right: 0;
+	top: -0.5rem;
+}
+
+.removeEntryBtnInCV {
 	position: absolute;
 	bottom: 1rem;
 	right: 0;
 }
 
-.addBtnInCV,
-.deleteBtnInCV {
+.addEntryBtnInCV,
+.removeSectionBtnInCV,
+.removeEntryBtnInCV,
+.removePersonalSectionBtnInCV {
 	margin: 0.25rem;
+	padding: 0.25rem;
+	font-size: 0.75rem;
 	font-weight: 600;
 	color: rgb(255, 255, 255);
 	background-color: rgb(0, 0, 0);
-	border: 1px solid rgb(0, 0, 0);
+	border: none;
 	border-radius: 5px;
 }
 
-.addBtnInCV:hover,
-.deleteBtnInCV:hover {
-	background-color: rgba(0, 0, 0, 0.75);
+.removeSectionBtnInCV,
+.removeEntryBtnInCV,
+.removePersonalSectionBtnInCV {
+	padding: 0.25rem;
+	background-color: rgb(175, 0, 0);
+	margin: 0.5rem auto;
+}
+
+.addEntryBtnInCV:hover {
+	background-color: rgb(35, 35, 35);
+}
+
+.addEntryBtnInCV:active {
+	background-color: rgb(50, 50, 50);
 }
 
 .footer {
@@ -461,7 +611,8 @@ input[name='photo'] {
 	}
 
 	.dataForm {
-		width: 800px;
+		width: 75vw;
+		max-width: 800px;
 	}
 }
 
