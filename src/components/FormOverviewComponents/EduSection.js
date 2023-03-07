@@ -1,22 +1,21 @@
-function EduSection(props) {
-	const { data, handleChange, handleRemove } = props;
+function EduSection({ data, handleChange, handleRemove }) {
 	return (
 		<form>
 			<label>
 				<input
 					type='text'
-					name='university'
-					placeholder='University'
-					value={data.university}
+					name='schoolversity'
+					placeholder='School'
+					value={data.schoolversity}
 					onChange={(e) => handleChange(e, data.id)}
 				/>
 			</label>
 			<label>
 				<input
 					type='text'
-					name='uniCity'
+					name='schoolCity'
 					placeholder='City'
-					value={data.uniCity}
+					value={data.schoolCity}
 					onChange={(e) => handleChange(e, data.id)}
 				/>
 			</label>
@@ -41,30 +40,30 @@ function EduSection(props) {
 			<label>
 				<input
 					type='date'
-					name='uniStart'
+					name='eduStart'
 					placeholder='Started'
-					min='1950-01-01'
-					max='2050-12-31'
-					value={data.uniStart}
+					min={`${new Date().getFullYear() - 100}-01-01`}
+					max={`${new Date().getFullYear() + 100}-12-31`}
+					value={data.eduStart}
 					onChange={(e) => handleChange(e, data.id)}
 				/>
 			</label>
 			<label>
 				<input
 					type='date'
-					name='uniEnd'
+					name='eduEnd'
 					placeholder='Ended'
-					min='1950-01-01'
-					max='2050-12-31'
-					value={data.uniEnd}
+					min={`${new Date().getFullYear() - 100}-01-01`}
+					max={`${new Date().getFullYear() + 100}-12-31`}
+					value={data.eduEnd}
 					onChange={(e) => handleChange(e, data.id)}
 				/>
 			</label>
 			<button
-				className='deleteBtnInForm'
-				onClick={(e) => handleRemove(e, data.id)}
+				className='removeEntryBtnInForm'
+				onClick={() => handleRemove(data.id)}
 			>
-				Delete above section
+				Remove above entry
 			</button>
 		</form>
 	);
