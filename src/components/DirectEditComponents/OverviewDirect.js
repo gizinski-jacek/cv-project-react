@@ -2,67 +2,93 @@ import PersonalEdit from './PersonalEdit';
 import ExperienceEdit from './ExperienceEdit';
 import EducationEdit from './EducationEdit';
 
-function OverviewDirect(props) {
-	const {
-		innerRef,
-		personal,
-		experience,
-		education,
-		changePersonal,
-		changeFile,
-		changeExperience,
-		addExperience,
-		removeExperience,
-		changeEducation,
-		addEducation,
-		removeEducation,
-		editing,
-		toggle,
-	} = props;
-
-	function showButton(e) {
-		e.currentTarget.className === 'experience'
-			? (document.getElementById('addExp').style.display = 'flex')
-			: (document.getElementById('addEdu').style.display = 'flex');
+function OverviewDirect({
+	innerRef,
+	personal,
+	experience,
+	education,
+	changePersonal,
+	changeFile,
+	changeExperience,
+	addExperience,
+	removeExperienceEntry,
+	changeEducation,
+	addEducation,
+	removeEducationEntry,
+	editing,
+	toggle,
+	addSection,
+	removeSection,
+	addPersonalSection,
+	removePersonalSection,
+}) {
+	function showSectionBtns(e) {
+		const ele1 = document.getElementById('expSectionBtns');
+		const ele2 = document.getElementById('eduSectionBtns');
+		if (e.currentTarget.className === 'experience' && ele1) {
+			ele1.style.display = 'flex';
+		} else if (ele2) {
+			ele2.style.display = 'flex';
+		}
 	}
 
-	function hideButton(e) {
-		e.currentTarget.className === 'experience'
-			? (document.getElementById('addExp').style.display = 'none')
-			: (document.getElementById('addEdu').style.display = 'none');
+	function hideSectionBtns(e) {
+		const ele1 = document.getElementById('expSectionBtns');
+		const ele2 = document.getElementById('eduSectionBtns');
+		if (e.currentTarget.className === 'experience' && ele1) {
+			ele1.style.display = 'none';
+		} else if (ele2) {
+			ele2.style.display = 'none';
+		}
 	}
 
-	let fullName;
-	if (personal.firstName || personal.lastName) {
-		fullName = personal.firstName.concat(' ', personal.lastName);
+	function showButtons(e) {
+		if (e.currentTarget.className === 'rightPanelCV') {
+			const ele1 = document.getElementById('addExpSectionBtnInCV');
+			const ele2 = document.getElementById('addEduSectionBtnInCV');
+			if (ele1) ele1.style.display = 'block';
+			if (ele2) ele2.style.display = 'block';
+		}
 	}
 
-	let expStartEndDate;
-	if (experience.startDate || education.endDate) {
-		expStartEndDate = experience.startDate.startDate(' - ', education.endDate);
+	function hideButtons(e) {
+		if (e.currentTarget.className === 'rightPanelCV') {
+			const ele1 = document.getElementById('addExpSectionBtnInCV');
+			const ele2 = document.getElementById('addEduSectionBtnInCV');
+			if (ele1) ele1.style.display = 'none';
+			if (ele2) ele2.style.display = 'none';
+		}
 	}
 
-	let eduStartEndDate;
-	if (education.startDate || education.endDate) {
-		eduStartEndDate = education.startDate.concat(' - ', education.endDate);
+	function formatName(first, last) {
+		if (first || last) {
+			return first.concat(' ', last);
+		}
 	}
 
-	const experienceItems = experience.map((item) => {
+	function formatDate(start, end) {
+		if (start || end) {
+			return new Date(start)
+				.toLocaleDateString()
+				.concat(' - ', end ? new Date(end).toLocaleDateString() : 'Present');
+		}
+	}
+
+	const experienceItems = experience?.map((item) => {
 		if (editing.experience) {
 			return (
 				<ExperienceEdit
 					key={item.id}
 					item={item}
-					experience={experience}
 					handleChange={changeExperience}
-					handleRemove={removeExperience}
+					handleRemove={removeExperienceEntry}
 				/>
 			);
 		} else {
 			return (
 				<div key={item.id} className='item' onClick={(e) => toggle(e, item.id)}>
 					<span className='date' placeholder_text='Start Date - End Date'>
-						{expStartEndDate}
+						{formatDate(item.workStart, item.workEnd)}
 					</span>
 					<p placeholder_text='Company'>{item.company}</p>
 					<p placeholder_text='City'>{item.city}</p>
@@ -73,25 +99,24 @@ function OverviewDirect(props) {
 		}
 	});
 
-	const educationItems = education.map((item) => {
+	const educationItems = education?.map((item) => {
 		if (editing.education) {
 			return (
 				<EducationEdit
 					key={item.id}
 					item={item}
-					education={education}
 					handleChange={changeEducation}
-					handleRemove={removeEducation}
+					handleRemove={removeEducationEntry}
 				/>
 			);
 		} else {
 			return (
 				<div key={item.id} className='item' onClick={(e) => toggle(e, item.id)}>
 					<span className='date' placeholder_text='Start Date - End Date'>
-						{eduStartEndDate}
+						{formatDate(item.eduStart, item.eduEnd)}
 					</span>
-					<p placeholder_text='University'>{item.university}</p>
-					<p placeholder_text='City'>{item.uniCity}</p>
+					<p placeholder_text='School'>{item.school}</p>
+					<p placeholder_text='City'>{item.schoolCity}</p>
 					<p placeholder_text='Degree:'>
 						{item.degree ? 'Degree: ' + item.degree : null}
 					</p>
@@ -112,26 +137,49 @@ function OverviewDirect(props) {
 				handleFile={changeFile}
 				experienceItems={experienceItems}
 				educationItems={educationItems}
+				removePersonalSection={removePersonalSection}
+				addPersonalSection={addPersonalSection}
+				addExperience={addExperience}
+				addEducation={addEducation}
+				addSection={addSection}
+				removeSection={removeSection}
+				showSectionBtns={showSectionBtns}
+				hideSectionBtns={hideSectionBtns}
+				showButtons={showButtons}
+				hideButtons={hideButtons}
 			/>
 		);
 	} else {
 		return (
-			<div ref={innerRef}>
+			<div ref={innerRef} className='mainCV'>
 				<div className='headerCV' onClick={(e) => toggle(e)}>
-					<h1 placeholder_text='Full Name'>{fullName}</h1>
-					<hr className='blackHR' />
-					<h2 placeholder_text='Title'>{personal.title}</h2>
-				</div>
-				<div className='mainCVBody'>
-					<div className='leftPanelCV' onClick={(e) => toggle(e)}>
-						<div>
-							<img src={personal.photo} alt='' />
-						</div>
-						<div>
-							<h3>Date of Birth</h3>
+					<h1 placeholder_text='Full Name'>
+						{formatName(personal.firstName, personal.lastName)}
+					</h1>
+					{personal.title !== undefined && (
+						<>
 							<hr className='blackHR' />
-							<p placeholder_text='YYYY-MM-DD'>{personal.birth}</p>
-						</div>
+							<h2 placeholder_text='Title'>{personal.title}</h2>
+						</>
+					)}
+				</div>
+				<div className='cvBody'>
+					<div className='leftPanelCV' onClick={(e) => toggle(e)}>
+						{personal.photo !== undefined && (
+							<div>
+								<img src={personal.photo} alt='' />
+							</div>
+						)}
+						{personal.birth !== undefined && (
+							<div>
+								<h3>Date of Birth</h3>
+								<hr className='blackHR' />
+								<p placeholder_text='Date'>
+									{personal.birth &&
+										new Date(personal.birth).toLocaleDateString()}
+								</p>
+							</div>
+						)}
 						<div>
 							<h3>Address</h3>
 							<hr className='blackHR' />
@@ -148,50 +196,93 @@ function OverviewDirect(props) {
 							<p placeholder_text='Email'>{personal.email}</p>
 						</div>
 					</div>
-					<div className='rightPanelCV' onClick={(e) => toggle(e)}>
-						<div className='description'>
-							<h3>Description</h3>
-							<hr className='blackHR' />
-							<p placeholder_text='Your description'>{personal.description}</p>
-						</div>
-						<div
-							className='experience'
-							onMouseEnter={showButton}
-							onMouseLeave={hideButton}
-						>
-							<h3>
-								Experience
-								<button
-									className='addBtnInCV'
-									id='addExp'
-									type='submit'
-									onClick={addExperience}
-								>
-									Add section
-								</button>
-							</h3>
-							<hr className='blackHR' />
-							{experienceItems}
-						</div>
-						<div
-							className='education'
-							onMouseEnter={showButton}
-							onMouseLeave={hideButton}
-						>
-							<h3>
-								Education
-								<button
-									className='addBtnInCV'
-									id='addEdu'
-									type='submit'
-									onClick={addEducation}
-								>
-									Add section
-								</button>
-							</h3>
-							<hr className='blackHR' />
-							{educationItems}
-						</div>
+					<div
+						className='rightPanelCV'
+						onClick={(e) => toggle(e)}
+						onMouseEnter={showButtons}
+						onMouseLeave={hideButtons}
+					>
+						{personal.profile !== undefined && (
+							<div className='profile'>
+								<h3>Profile</h3>
+								<hr className='blackHR' />
+								<p placeholder_text='Your profile'>{personal.profile}</p>
+							</div>
+						)}
+						{experience ? (
+							<div
+								className='experience'
+								onMouseEnter={showSectionBtns}
+								onMouseLeave={hideSectionBtns}
+							>
+								<h3>
+									Experience
+									<div id='expSectionBtns'>
+										<button
+											className='addEntryBtnInCV'
+											type='button'
+											onClick={addExperience}
+										>
+											Add entry
+										</button>
+										<button
+											className='removeSectionBtnInCV'
+											type='button'
+											onClick={() => removeSection('experience')}
+										>
+											Remove section
+										</button>
+									</div>
+								</h3>
+								<hr className='blackHR' />
+								{experienceItems}
+							</div>
+						) : (
+							<button
+								id='addExpSectionBtnInCV'
+								type='button'
+								onClick={() => addSection('experience')}
+							>
+								Add experience section
+							</button>
+						)}
+						{education ? (
+							<div
+								className='education'
+								onMouseEnter={showSectionBtns}
+								onMouseLeave={hideSectionBtns}
+							>
+								<h3>
+									Education
+									<div id='eduSectionBtns'>
+										<button
+											className='addEntryBtnInCV'
+											type='button'
+											onClick={addEducation}
+										>
+											Add entry
+										</button>
+										<button
+											className='removeSectionBtnInCV'
+											type='button'
+											onClick={() => removeSection('education')}
+										>
+											Remove section
+										</button>
+									</div>
+								</h3>
+								<hr className='blackHR' />
+								{educationItems}
+							</div>
+						) : (
+							<button
+								id='addEduSectionBtnInCV'
+								type='button'
+								onClick={() => addSection('education')}
+							>
+								Add education section
+							</button>
+						)}
 					</div>
 				</div>
 			</div>
