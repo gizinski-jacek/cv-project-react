@@ -21,14 +21,14 @@ function DirectEdit(props) {
 	function toggleEdit(e, id) {
 		e.stopPropagation();
 		if (id) {
-			const section = e.currentTarget.parentElement.className;
+			const entry = e.currentTarget.parentElement.className;
 			setEditing((prevState) => ({
 				...prevState,
-				[section]: true,
+				[entry]: true,
 			}));
 		} else if (
 			e.currentTarget.className !== 'rightPanelCV' ||
-			e.target.closest('div').className === 'description'
+			e.target.closest('div').className === 'profile'
 		) {
 			setEditing((prevState) => ({
 				...prevState,
