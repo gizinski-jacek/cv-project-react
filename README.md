@@ -73,6 +73,7 @@ heroku open
 ## Features
 
 - Create basic CV
+- Add/remove entries
 - Add/remove sections
 - Upload your own photo
 - Switch between two input modes
