@@ -23,10 +23,12 @@ button {
 }
 
 button:hover {
+	-webkit-filter: brightness(110%);
 	filter: brightness(110%);
 }
 
 button:active {
+	-webkit-filter: brightness(125%);
 	filter: brightness(125%);
 }
 
@@ -37,6 +39,9 @@ button:active {
 	padding: 0.5rem;
 	color: rgb(255, 255, 255);
 	background-color: rgb(50, 50, 50);
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -91,6 +96,7 @@ button.activeMode {
 
 button.activeMode:hover,
 button.activeMode:active {
+	-webkit-filter: unset;
 	filter: unset;
 	cursor: initial;
 }
@@ -175,6 +181,8 @@ button.activeMode:active {
 }
 
 .overview {
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
 	width: 800px;
 	background-color: rgb(255, 255, 255);
@@ -298,6 +306,8 @@ p {
 
 .leftPanelCV {
 	width: 240px;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
 	height: fit-content;
 	background-color: rgb(225, 225, 225);
 }
