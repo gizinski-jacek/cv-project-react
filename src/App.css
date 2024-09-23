@@ -45,7 +45,33 @@ button:active {
 	user-select: none;
 }
 
-.header h1 {
+.info {
+	display: flex;
+	align-items: center;
+}
+
+.info .github a {
+	display: block;
+	font-weight: 600;
+	color: rgb(255, 255, 255);
+	padding: 4px;
+	float: right;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+}
+
+.info .github svg {
+	height: 24px;
+	width: 24px;
+	box-sizing: content-box;
+	border-radius: 50%;
+	padding: 1px;
+	background-color: rgb(255, 255, 255);
+	fill: rgb(0, 0, 0);
+}
+
+.info h1 {
 	display: flex;
 	align-items: center;
 	white-space: nowrap;
@@ -59,13 +85,13 @@ button:active {
 	position: relative;
 }
 
-.mode {
+.editMode {
 	display: flex;
 	justify-content: center;
 	margin: 0.5rem;
 }
 
-.mode button {
+.editMode button {
 	width: 180px;
 	padding: 0.5rem;
 	font-size: 1rem;
@@ -582,31 +608,6 @@ input[name='photo'] {
 	background-color: rgb(50, 50, 50);
 }
 
-.footer {
-	width: 100%;
-	text-align: center;
-	background-color: rgb(0, 0, 0);
-}
-
-.footer a {
-	font-weight: 600;
-	color: rgb(255, 255, 255);
-	padding: 4px;
-	float: right;
-	display: flex;
-	align-items: center;
-	text-decoration: none;
-}
-
-.footer svg {
-	margin-left: 8px;
-	box-sizing: content-box;
-	border-radius: 50%;
-	padding: 1px;
-	background-color: rgb(255, 255, 255);
-	fill: rgb(0, 0, 0);
-}
-
 @media (max-width: 1360px) {
 	.formOverviewMode {
 		flex-direction: column;
@@ -643,10 +644,15 @@ input[name='photo'] {
 	#resetCV:after {
 		content: 'Reset';
 	}
+
+	.info .github svg {
+		height: 18px;
+		width: 18px;
+	}
 }
 
 @media (max-width: 880px) {
-	.mode button {
+	.editMode button {
 		width: 80px;
 	}
 

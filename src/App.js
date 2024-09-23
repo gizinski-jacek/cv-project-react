@@ -3,7 +3,6 @@ import './App.css';
 import Header from './components/Header';
 import DirectEdit from './components/DirectEdit';
 import FormOverview from './components/FormOverview';
-import Footer from './components/Footer';
 import emptyCV from './components/Utils/emptyCV';
 import { nanoid } from 'nanoid';
 import { useReactToPrint } from 'react-to-print';
@@ -212,7 +211,6 @@ function App() {
 						/>
 					)}
 				</div>
-				<Footer />
 			</>
 		)
 	);
