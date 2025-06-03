@@ -2,7 +2,7 @@ function Header({ mode, changeMode, printCV, saveCV, resetCV }) {
 	return (
 		<div className='header'>
 			<div className='info'>
-				<div className='github'>
+				{/* <div className='github'>
 					<a href='https://github.com/gizinski-jacek/cv-project-react'>
 						<svg
 							viewBox='0 0 16 16'
@@ -16,7 +16,7 @@ function Header({ mode, changeMode, printCV, saveCV, resetCV }) {
 							></path>
 						</svg>
 					</a>
-				</div>
+				</div> */}
 				<h1>CV Creator</h1>
 			</div>
 			<div className='editMode'>
